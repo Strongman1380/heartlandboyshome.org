@@ -946,47 +946,45 @@ body {
     margin-bottom: 15px;
 }
 
-.contact-form {
-    max-width: 600px;
+/* Google Form Container */
+.google-form-container {
+    max-width: 800px;
     margin: 0 auto;
     background: var(--white);
-    padding: 40px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 5px 20px var(--shadow);
+    overflow: hidden;
 }
 
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-    color: var(--text-dark);
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
+.google-form-container iframe {
     width: 100%;
-    padding: 12px;
-    border: 2px solid var(--light-gray);
+    min-height: 1200px;
+    border: none;
     border-radius: 5px;
-    font-family: inherit;
-    transition: border-color 0.3s ease;
 }
 
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: var(--primary-red);
+/* Responsive adjustments for Google Form */
+@media (max-width: 768px) {
+    .google-form-container {
+        padding: 10px;
+        margin: 0 10px;
+    }
+    
+    .google-form-container iframe {
+        min-height: 1000px;
+    }
 }
 
-.form-group textarea {
-    height: 120px;
-    resize: vertical;
+@media (max-width: 480px) {
+    .google-form-container {
+        padding: 5px;
+        margin: 0 5px;
+    }
+    
+    .google-form-container iframe {
+        min-height: 900px;
+    }
 }
 
 .contact-info {

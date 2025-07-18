@@ -1,154 +1,147 @@
 # Heartland Boys Home Website
 
-A comprehensive, professional website for Heartland Boys Home featuring a red and yellow color scheme and trauma-informed, privacy-conscious content.
-
-## Website Structure
-
-```
-/
-├── index.html          # Homepage
-├── about.html          # About Us page
-├── programs.html       # Programs & Services
-├── admissions.html     # Admissions & Referrals
-├── staff.html          # Our Staff
-├── contact.html        # Contact Information
-├── css/
-│   └── styles.css      # Main stylesheet
-├── js/
-│   └── script.js       # JavaScript functionality
-├── images/             # Image assets folder
-└── README.md           # This file
-```
+A professional static website for Heartland Boys Home, a residential treatment facility for youth in Geneva, Nebraska. This website provides information about programs, staff, and includes Google Forms integration for all inquiries and applications.
 
 ## Features
 
-### Design & User Experience
-- **Responsive Design**: Works on desktop, tablet, and mobile devices
-- **Professional Color Scheme**: Red (#C41E3A) and yellow (#FFD700) branding
-- **Accessibility**: High contrast, readable fonts, keyboard navigation
-- **Modern UI**: Clean, professional design with smooth animations
+- **Responsive Design**: Mobile-friendly layout that works on all devices
+- **Google Forms Integration**: All forms use embedded Google Forms for easy management
+- **Static Website**: No backend required - ready for any hosting service
+- **Performance**: Optimized loading with compression and caching
+- **Accessibility**: WCAG compliant design with proper semantic HTML
+- **Security**: Security headers and best practices via .htaccess
 
-### Content Sections
-- **Homepage**: Hero section, mission, services overview, testimonials
-- **About**: Mission, philosophy, credentials, innovation
-- **Programs**: Detailed program descriptions, daily schedule, services
-- **Admissions**: Referral process, eligibility, emergency placements
-- **Staff**: Team profiles, qualifications, professional development
-- **Contact**: Contact forms, emergency information, partnership opportunities
+## Technology Stack
 
-### Interactive Features
-- **Mobile Navigation**: Hamburger menu for mobile devices
-- **Contact Forms**: Professional inquiry forms with validation
-- **Smooth Scrolling**: Enhanced user experience
-- **Back to Top Button**: Easy navigation
-- **Animated Elements**: Scroll-triggered animations
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Forms**: Google Forms embedded via iframes
+- **Hosting**: Static files ready for any web hosting service
+- **Optimization**: .htaccess for Apache servers (Hostinger compatible)
 
-## Adding Images
+## Quick Start
 
-### Required Images
-Place these images in the `/images/` folder:
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd heartland-boys-home
+   ```
 
-1. **logo.png** - Heartland Boys Home logo
-2. **hero-image.jpg** - Main hero section image (facility or youth activities)
-3. **facility-exterior.jpg** - Building exterior
-4. **classroom.jpg** - Educational spaces
-5. **common-area.jpg** - Living/recreation areas
-6. **staff-photos/** - Individual staff photos (optional)
+2. **Open locally**
+   Simply open `index.html` in your web browser, or use a local server:
+   ```bash
+   # Using Python
+   python -m http.server 8000
+   
+   # Using Node.js (if you have http-server installed)
+   npx http-server
+   ```
 
-### Image Specifications
-- **Logo**: PNG format, transparent background, 200x80px recommended
-- **Hero Image**: JPG format, 1200x800px minimum, high quality
-- **Other Images**: JPG format, 800x600px minimum
+3. **Visit the website**
+   Open http://localhost:8000 in your browser
 
-### Adding Images
-1. Save images to the `/images/` folder
-2. Update image references in HTML files if needed
-3. Ensure file names match those referenced in the code
+## Deployment
 
-## Customization
+This is a static website ready for deployment on any hosting service. See [HOSTINGER_DEPLOYMENT.md](HOSTINGER_DEPLOYMENT.md) for specific Hostinger deployment instructions.
 
-### Contact Information
-Update placeholder contact information in all files:
-- Replace `(XXX) XXX-XXXX` with actual phone numbers
-- Replace `contact@heartlandboyshome.org` with actual email
-- Add specific address details as appropriate
+### Deployment Options
+- **Hostinger**: Upload files to public_html folder
+- **Netlify**: Drag and drop folder or connect to Git
+- **Vercel**: Deploy directly from Git repository
+- **GitHub Pages**: Enable Pages in repository settings
+- **Any shared hosting**: Upload files via FTP/File Manager
 
-### Colors
-The color scheme is defined in CSS variables at the top of `styles.css`:
-```css
-:root {
-    --primary-red: #C41E3A;
-    --secondary-red: #8B0000;
-    --primary-yellow: #FFD700;
-    --secondary-yellow: #FFA500;
-    /* ... other colors */
-}
+## Google Forms Integration
+
+All website forms now use a single Google Form:
+- **Form URL**: https://docs.google.com/forms/d/e/1FAIpQLSe5zMM4Cl3oyWTcZXKIX-dzKg_komhGlIqw8ZNw8Q-r5HfmmQ/viewform
+
+### Form Types Handled
+- **Contact Form**: General inquiries and contact requests
+- **Referral Form**: Professional referrals for youth placement (select "Referral/Admission")
+- **Volunteer Form**: Volunteer applications (select "Partnership/Volunteer")
+- **Donation Form**: Donation inquiries (select "Donation Inquiry")
+- **Newsletter Form**: Newsletter subscription requests (mention in message)
+
+## File Structure
+
+```
+heartland-boys-home/
+├── index.html              # Homepage
+├── about.html              # About page
+├── programs.html           # Programs page
+├── admissions.html         # Admissions page
+├── staff.html              # Staff page
+├── contact.html            # Contact page with Google Form
+├── referral.html           # Referral page with Google Form
+├── volunteer.html          # Volunteer page with Google Form
+├── donate.html             # Donation page with Google Form
+├── newsletter.html         # Newsletter page with Google Form
+├── 404.html                # Custom 404 error page
+├── .htaccess               # Apache configuration
+├── css/
+│   └── styles.css          # Main stylesheet
+├── js/
+│   └── script.js           # Frontend JavaScript
+├── images/                 # Website images
+└── HOSTINGER_DEPLOYMENT.md # Deployment guide
 ```
 
-### Content Updates
-- All content is easily editable in the HTML files
-- Staff information can be updated in `staff.html`
-- Program details can be modified in `programs.html`
-- Contact forms can be customized in `contact.html`
+## No Backend Required
 
-## Technical Features
-
-### Form Handling
-- Contact forms include client-side validation
-- Forms are ready for backend integration
-- Professional inquiry categorization
-- Emergency contact prioritization
-
-### SEO Optimization
-- Semantic HTML structure
-- Meta tags for search engines
-- Descriptive page titles
-- Alt text for images (when added)
-
-### Performance
-- Optimized CSS and JavaScript
-- Efficient image loading
-- Minimal external dependencies
-- Fast loading times
+This website is now completely static:
+- ✅ No Node.js server needed
+- ✅ No database required
+- ✅ No email server configuration
+- ✅ No environment variables
+- ✅ Works on any hosting service
+- ✅ Easy to maintain and update
 
 ## Browser Support
+
 - Chrome (latest)
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
-- Mobile browsers
+- Mobile browsers (iOS Safari, Chrome Mobile)
 
-## Deployment
+## Making Changes
 
-### Local Testing
-1. Open `index.html` in a web browser
-2. Test all navigation and forms
-3. Verify responsive design on different screen sizes
+1. **Content Updates**: Edit the HTML files directly
+2. **Styling Changes**: Modify `css/styles.css`
+3. **JavaScript Updates**: Edit `js/script.js`
+4. **Images**: Replace files in the `images/` folder
+5. **Forms**: Manage responses through Google Forms dashboard
 
-### Web Hosting
-1. Upload all files to your web server
-2. Ensure folder structure is maintained
-3. Test all links and functionality
-4. Set up form handling backend if needed
+## Google Form Management
 
-## Maintenance
+- Form responses are collected in Google Forms
+- Set up email notifications in Google Forms settings
+- Export responses to Google Sheets for analysis
+- Customize form questions as needed
 
-### Regular Updates
-- Update staff information as needed
-- Refresh testimonials periodically
-- Keep contact information current
-- Add new program information
+## Contributing
 
-### Content Guidelines
-- Maintain trauma-informed language
-- Respect privacy and confidentiality
-- Use professional, approachable tone
-- Keep information current and accurate
-
-## Support
-
-For technical support or customization needs, contact the development team or refer to the documentation in the code comments.
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
 ## License
 
-This website is created specifically for Heartland Boys Home. All rights reserved.
+This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For technical support or questions about the website, please contact the development team or create an issue in the repository.
+
+## Contact Information
+
+**Heartland Boys Home**
+- Address: 904 Road P, Geneva, NE
+- Phone: (402) 759-4334
+- Email: contact@heartlandboyshome.org
+
+---
+
+*Empowering Youth. Restoring Hope. Building Futures.*

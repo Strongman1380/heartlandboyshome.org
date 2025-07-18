@@ -78,84 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Form submission handling
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const submitButton = this.querySelector('button[type="submit"]');
-            const successMessage = document.getElementById('success-message');
-            const errorMessage = document.getElementById('error-message');
-            
-            // Hide previous messages
-            if (successMessage) successMessage.style.display = 'none';
-            if (errorMessage) errorMessage.style.display = 'none';
-            
-            // Show loading state
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'Sending...';
-            submitButton.disabled = true;
-            
-            try {
-                const response = await fetch('/api/contact', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    if (successMessage) {
-                        successMessage.style.display = 'block';
-                        successMessage.scrollIntoView({ behavior: 'smooth' });
-                    } else {
-                        showNotification('Message sent successfully! We will get back to you soon.', 'success');
-                    }
-                    this.reset();
-                } else {
-                    throw new Error(result.message || 'Submission failed');
-                }
-            } catch (error) {
-                console.error('Form submission error:', error);
-                if (errorMessage) {
-                    errorMessage.style.display = 'block';
-                    errorMessage.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    showNotification('Error sending message. Please try again or contact us directly.', 'error');
-                }
-            } finally {
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            }
-        });
-    }
-
-    // Check for success parameter in URL (if redirected back from thank-you page)
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('success') === 'true') {
-        const successMessage = document.getElementById('success-message');
-        const contactForm = document.getElementById('contact-form');
-        
-        if (successMessage && contactForm) {
-            contactForm.style.display = 'none';
-            successMessage.style.display = 'block';
-            
-            // Scroll to success message
-            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // Reset form and show it again after 10 seconds
-            setTimeout(() => {
-                contactForm.reset();
-                contactForm.style.display = 'block';
-                successMessage.style.display = 'none';
-            }, 10000);
-        }
-        
-        // Clean up URL
-        window.history.replaceState({}, document.title, window.location.pathname);
-    }
+    // Google Form is embedded via iframe - no custom form handling needed
+    // The form submission is handled directly by Google Forms
 
     // Enhanced Scroll Animations
     const scrollAnimationOptions = {
