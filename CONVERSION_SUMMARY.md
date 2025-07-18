@@ -27,8 +27,9 @@
 ## What Was Added/Modified
 
 ### New Files
-- ✅ `.htaccess` - Apache configuration for optimization and security
-- ✅ `HOSTINGER_DEPLOYMENT.md` - Deployment guide for Hostinger
+- ✅ `vercel.json` - Vercel configuration for routing and optimization
+- ✅ `.htaccess` - Apache configuration (fallback for other hosting)
+- ✅ `VERCEL_DEPLOYMENT.md` - Deployment guide for Vercel
 - ✅ `README.md` - Updated for static website
 - ✅ `CONVERSION_SUMMARY.md` - This file
 
@@ -55,7 +56,7 @@ All forms now use this single Google Form:
 
 ## Deployment Ready
 
-The website is now ready for deployment on Hostinger or any static hosting service:
+The website is now ready for deployment on Vercel or any static hosting service:
 
 ### Files to Upload
 ```
@@ -71,6 +72,7 @@ The website is now ready for deployment on Hostinger or any static hosting servi
 ├── donate.html
 ├── newsletter.html
 ├── 404.html
+├── vercel.json
 ├── .htaccess
 ├── css/styles.css
 ├── js/script.js
@@ -90,10 +92,10 @@ The website is now ready for deployment on Hostinger or any static hosting servi
 
 ## Next Steps
 
-1. **Upload to Hostinger**: Follow the instructions in `HOSTINGER_DEPLOYMENT.md`
+1. **Deploy to Vercel**: Follow the instructions in `VERCEL_DEPLOYMENT.md`
 2. **Test All Forms**: Ensure Google Forms load properly on all pages
 3. **Set Up Form Notifications**: Configure email notifications in Google Forms
-4. **Optional**: Set up SSL certificate for HTTPS
+4. **Optional**: Set up custom domain in Vercel dashboard
 5. **Monitor**: Check form submissions and website performance
 
-The conversion is complete and the website is ready for production deployment!
+The conversion is complete and the website is ready for production deployment on Vercel!

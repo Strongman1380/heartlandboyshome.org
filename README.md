@@ -41,13 +41,13 @@ A professional static website for Heartland Boys Home, a residential treatment f
 
 ## Deployment
 
-This is a static website ready for deployment on any hosting service. See [HOSTINGER_DEPLOYMENT.md](HOSTINGER_DEPLOYMENT.md) for specific Hostinger deployment instructions.
+This is a static website ready for deployment on any hosting service. See [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md) for specific Vercel deployment instructions.
 
 ### Deployment Options
-- **Hostinger**: Upload files to public_html folder
+- **Vercel**: Deploy directly from Git repository (Recommended)
 - **Netlify**: Drag and drop folder or connect to Git
-- **Vercel**: Deploy directly from Git repository
 - **GitHub Pages**: Enable Pages in repository settings
+- **Hostinger**: Upload files to public_html folder
 - **Any shared hosting**: Upload files via FTP/File Manager
 
 ## Google Forms Integration
@@ -77,13 +77,14 @@ heartland-boys-home/
 ├── donate.html             # Donation page with Google Form
 ├── newsletter.html         # Newsletter page with Google Form
 ├── 404.html                # Custom 404 error page
-├── .htaccess               # Apache configuration
+├── vercel.json             # Vercel configuration
+├── .htaccess               # Apache configuration (fallback)
 ├── css/
 │   └── styles.css          # Main stylesheet
 ├── js/
 │   └── script.js           # Frontend JavaScript
 ├── images/                 # Website images
-└── HOSTINGER_DEPLOYMENT.md # Deployment guide
+└── VERCEL_DEPLOYMENT.md    # Deployment guide
 ```
 
 ## No Backend Required
