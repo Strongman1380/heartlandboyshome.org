@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Heartland Boys Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo.png" alt="Heartland Boys Home Logo" class="logo">
+                <span class="logo-text">Heartland Boys Home</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="programs.html" class="nav-link">Programs</a></li>
+                <li class="nav-item"><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li class="nav-item"><a href="staff.html" class="nav-link">Staff</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link active">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contact Heartland Boys Home</h1>
+            <p>Get in touch with us for referrals, questions, or to learn more about how we can support youth in your care.</p>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="content-section">
+        <div class="container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p>904 Road P<br>Geneva, NE<br>
+                    <small>Professional visits welcome by appointment</small></p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p>(402) 759-4334<br>
+                    <small>Professional line for referrals and inquiries</small></p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>contact@heartlandboyshome.org<br>
+                    <small>We respond within 24 hours</small></p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Office Hours</h3>
+                    <p>Monday - Friday: 8:00 AM - 5:00 PM<br>
+                    <small>After hours messages will be returned promptly</small></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Send Us a Message</h2>
+            <form class="contact-form" id="contact-form" action="/api/contact" method="POST">
+                <div class="form-group">
+                    <label for="inquiry-type">Type of Inquiry *</label>
+                    <select id="inquiry-type" name="inquiry-type" required>
+                        <option value="">Please select...</option>
+                        <option value="referral">Referral/Admission</option>
+                        <option value="information">General Information</option>
+                        <option value="partnership">Partnership/Volunteer</option>
+                        <option value="employment">Employment Opportunity</option>
+                        <option value="donation">Donation Inquiry</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="organization">Organization/Agency</label>
+                    <input type="text" id="organization" name="organization">
+                </div>
+                
+                <div class="form-group">
+                    <label for="title">Title/Position</label>
+                    <input type="text" id="title" name="title">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="urgency">Urgency Level</label>
+                    <select id="urgency" name="urgency">
+                        <option value="routine">Routine - Response within 24-48 hours</option>
+                        <option value="urgent">Urgent - Response within 4-8 hours</option>
+                        <option value="urgent">Urgent - Response within 4-8 hours</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" required placeholder="Please provide details about your inquiry, including any specific questions or information that would help us assist you better."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="preferred-contact">Preferred Contact Method</label>
+                    <select id="preferred-contact" name="preferred-contact">
+                        <option value="email">Email</option>
+                        <option value="phone">Phone</option>
+                        <option value="either">Either Email or Phone</option>
+                    </select>
+                </div>
+                
+
+                
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+            
+            <!-- Success Message (hidden by default) -->
+            <div id="success-message" class="success-message" style="display: none;">
+                <div class="success-content">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Thank You!</h3>
+                    <p>Your form has been submitted successfully. We will get back to you within 24 hours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Referral Contacts -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Referral Contacts</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3><i class="fas fa-user-tie"></i> Admissions Coordinator</h3>
+                    <p>For all referral inquiries and admissions questions:</p>
+                    <ul>
+                        <li>Initial screening and eligibility</li>
+                        <li>Documentation requirements</li>
+                        <li>Intake scheduling</li>
+                    </ul>
+                    <p><strong>Direct Line:</strong> (402) 759-4334 ext. 1</p>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-graduation-cap"></i> Education Coordinator</h3>
+                    <p>For educational planning and academic questions:</p>
+                    <ul>
+                        <li>School district coordination</li>
+                        <li>IEP and special education services</li>
+                        <li>Credit transfer and recovery</li>
+                        <li>GED preparation</li>
+                    </ul>
+                    <p><strong>Direct Line:</strong> (402) 759-4334 ext. 2</p>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-heart"></i> Clinical Coordinator</h3>
+                    <p>For mental health and therapeutic services:</p>
+                    <ul>
+                        <li>Therapy and counseling services</li>
+                        <li>Mental health assessments</li>
+                        <li>Medication coordination</li>
+                        <li>Family therapy planning</li>
+                    </ul>
+                    <p><strong>Direct Line:</strong> (402) 759-4334 ext. 3</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Opportunities -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Partner With Us</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3><i class="fas fa-handshake"></i> Professional Partnerships</h3>
+                    <p>We welcome partnerships with:</p>
+                    <ul>
+                        <li>Juvenile probation departments</li>
+                        <li>Child welfare agencies</li>
+                        <li>School districts</li>
+                        <li>Mental health providers</li>
+                        <li>Community organizations</li>
+                    </ul>
+                    <div style="margin-top: 15px;">
+                        <a href="referral.html" class="btn btn-primary">Submit Referral</a>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-gift"></i> Donations & Support</h3>
+                    <p>Donations are accepted upon request to help us manage our inventory effectively. Please contact us to discuss current needs and coordinate any potential donations.</p>
+                    <p>This approach ensures we can properly accommodate donations while maintaining our organized facility operations.</p>
+                    <div style="margin-top: 15px;">
+                        <a href="donate.html" class="btn btn-primary">Donation Inquiry</a>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-users"></i> Volunteers & Mentors</h3>
+                    <p>Volunteer opportunities include:</p>
+                    <ul>
+                        <li>Community mentors</li>
+                        <li>Skills workshop facilitators</li>
+                        <li>Educational tutors</li>
+                        <li>Recreation activity leaders</li>
+                        <li>Career guidance counselors</li>
+                    </ul>
+                    <div style="margin-top: 15px;">
+                        <a href="volunteer.html" class="btn btn-primary">Apply to Volunteer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Directions -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Visiting Our Facility</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3><i class="fas fa-map"></i> Location & Directions</h3>
+                    <p>Heartland Boys Home is located at 904 Road P, Geneva, Nebraska. Geneva is centrally located in Nebraska, making it accessible from major cities throughout the state.</p>
+                    <p>For detailed directions or GPS navigation, please use our full address: 904 Road P, Geneva, NE.</p>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-calendar-check"></i> Scheduling Visits</h3>
+                    <p>To schedule a facility tour or meeting:</p>
+                    <ul>
+                        <li>Call our main number to schedule</li>
+                        <li>Professional visits welcome by appointment</li>
+                        <li>Family visits coordinated through case management</li>
+                        <li>Virtual tours available upon request</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Heartland Boys Home Logo" class="logo">
+                        <span class="logo-text">Heartland Boys Home</span>
+                    </div>
+                    <p>Empowering Youth. Restoring Hope. Building Futures.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="staff.html">Our Staff</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 904 Road P, Geneva, NE</p>
+                    <p><i class="fas fa-phone"></i> (402) 759-4334</p>
+                    <p><i class="fas fa-envelope"></i> contact@heartlandboyshome.org</p>
+                    <p><i class="fas fa-star"></i> <a href="https://www.google.com/search?q=heartlandboys+home&rlz=1C5CHFA_enUS1147US1147&oq=heartland&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MhIIARAuGBQYgwEYhwIYsQMYgAQyEggCEC4YQxivARjHARiABBiKBTIMCAMQIxgnGIAEGIoFMhIIBBAuGEMYrwEYxwEYgAQYigUyBggFEEUYPTIGCAYQRRg8MgYIBxBFGDzSAQgyNjU0ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#" target="_blank" style="color: var(--primary-yellow); text-decoration: none; display: inline-block; max-width: 100%;">Leave a Review</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Partner With Us</h3>
+                    <p>We welcome referrals, community mentors, and volunteers. Donations accepted upon request.</p>
+                    <a href="contact.html" class="btn btn-outline">Get Involved</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Heartland Boys Home. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

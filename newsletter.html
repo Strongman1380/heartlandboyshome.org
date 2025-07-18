@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter Signup - Heartland Boys Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo.png" alt="Heartland Boys Home Logo" class="logo">
+                <span class="logo-text">Heartland Boys Home</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="programs.html" class="nav-link">Programs</a></li>
+                <li class="nav-item"><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li class="nav-item"><a href="staff.html" class="nav-link">Staff</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Stay Connected</h1>
+            <p>Subscribe to our newsletter to receive updates about our programs, success stories, and ways to support our mission.</p>
+        </div>
+    </section>
+
+    <!-- Newsletter Benefits -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">What You'll Receive</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3><i class="fas fa-star"></i> Success Stories</h3>
+                    <p>Read inspiring stories from our residents and graduates as they work toward brighter futures.</p>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-bullhorn"></i> Program Updates</h3>
+                    <p>Stay informed about new programs, initiatives, and improvements to our services.</p>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-hands-helping"></i> Volunteer Opportunities</h3>
+                    <p>Be the first to know about volunteer opportunities and ways to get involved in our community.</p>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-calendar-alt"></i> Events & Fundraisers</h3>
+                    <p>Get invitations to special events, fundraisers, and community gatherings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup Form -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Subscribe to Our Newsletter</h2>
+            
+            <div class="highlight-box">
+                <h3><i class="fas fa-shield-alt"></i> Privacy Promise</h3>
+                <p>We respect your privacy. We'll never spam you or share your email address. You can unsubscribe at any time.</p>
+            </div>
+
+            <form class="contact-form" id="newsletter-form" action="/api/newsletter" method="POST" style="max-width: 600px; margin: 0 auto;">
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="name">Name (Optional)</label>
+                    <input type="text" id="name" name="name" placeholder="Your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="interests">What are you most interested in? (Optional)</label>
+                    <select id="interests" name="interests">
+                        <option value="">Please select...</option>
+                        <option value="general">General updates</option>
+                        <option value="success-stories">Success stories</option>
+                        <option value="volunteer">Volunteer opportunities</option>
+                        <option value="events">Events and fundraisers</option>
+                        <option value="programs">Program information</option>
+                        <option value="all">All of the above</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Subscribe to Newsletter</button>
+            </form>
+            
+            <!-- Success Message (hidden by default) -->
+            <div id="success-message" class="success-message" style="display: none; max-width: 600px; margin: 20px auto;">
+                <i class="fas fa-check-circle"></i>
+                <h3>Successfully Subscribed!</h3>
+                <p>Thank you for subscribing to our newsletter! Check your email for a welcome message.</p>
+            </div>
+            
+            <!-- Error Message (hidden by default) -->
+            <div id="error-message" class="error-message" style="display: none; max-width: 600px; margin: 20px auto;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Subscription Error</h3>
+                <p>There was an error processing your subscription. Please try again or contact us directly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="content-section">
+        <div class="container">
+            <div class="highlight-box">
+                <h3><i class="fas fa-envelope"></i> Questions About Our Newsletter?</h3>
+                <p>Contact us at <strong>(402) 759-4334</strong> or email <strong>contact@heartlandboyshome.org</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Heartland Boys Home Logo" class="logo">
+                        <span class="logo-text">Heartland Boys Home</span>
+                    </div>
+                    <p>Empowering Youth. Restoring Hope. Building Futures.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="staff.html">Our Staff</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 904 Road P, Geneva, NE</p>
+                    <p><i class="fas fa-phone"></i> (402) 759-4334</p>
+                    <p><i class="fas fa-envelope"></i> contact@heartlandboyshome.org</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Partner With Us</h3>
+                    <p>We welcome referrals, community mentors, and volunteers. Donations accepted upon request.</p>
+                    <a href="contact.html" class="btn btn-outline">Get Involved</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Heartland Boys Home. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Handle newsletter form submission
+        document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const submitButton = this.querySelector('button[type="submit"]');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Hide previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Show loading state
+            submitButton.textContent = 'Subscribing...';
+            submitButton.disabled = true;
+            
+            try {
+                const response = await fetch('/api/newsletter', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    successMessage.style.display = 'block';
+                    this.reset();
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error(result.message || 'Subscription failed');
+                }
+            } catch (error) {
+                console.error('Newsletter subscription error:', error);
+                errorMessage.style.display = 'block';
+                errorMessage.scrollIntoView({ behavior: 'smooth' });
+            } finally {
+                submitButton.textContent = 'Subscribe to Newsletter';
+                submitButton.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

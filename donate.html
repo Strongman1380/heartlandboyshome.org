@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Inquiry - Heartland Boys Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo.png" alt="Heartland Boys Home Logo" class="logo">
+                <span class="logo-text">Heartland Boys Home</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="programs.html" class="nav-link">Programs</a></li>
+                <li class="nav-item"><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li class="nav-item"><a href="staff.html" class="nav-link">Staff</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Support Our Mission</h1>
+            <p>Your generous donations help us provide life-changing programs and support for the young men in our care.</p>
+        </div>
+    </section>
+
+    <!-- Ways to Give -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Ways to Support Heartland Boys Home</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3><i class="fas fa-dollar-sign"></i> Monetary Donations</h3>
+                    <p>Financial contributions help fund our programs, staff training, educational resources, and facility improvements.</p>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-gift"></i> Goods & Supplies</h3>
+                    <p>Donate clothing, educational materials, recreational equipment, or household items that benefit our residents.</p>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-tools"></i> Services</h3>
+                    <p>Offer professional services like maintenance, landscaping, tutoring, or specialized training for our staff.</p>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-calendar-alt"></i> Sponsorship</h3>
+                    <p>Sponsor specific programs, events, or activities that directly impact the lives of our residents.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="highlight-box">
+                <h3><i class="fas fa-heart"></i> Your Impact</h3>
+                <p>Every donation, no matter the size, makes a direct difference in the lives of young men working to overcome challenges and build successful futures. Your support helps provide:</p>
+                <ul style="text-align: left; margin-top: 15px;">
+                    <li>Trauma-informed therapeutic services</li>
+                    <li>Educational support and resources</li>
+                    <li>Life skills training and development</li>
+                    <li>Recreational and enrichment activities</li>
+                    <li>Safe, supportive living environment</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Inquiry Form -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Donation Inquiry Form</h2>
+            
+            <div class="highlight-box">
+                <h3><i class="fas fa-info-circle"></i> How It Works</h3>
+                <p>Submit this form to let us know about your donation interest. Our team will contact you to discuss the details, tax deduction information, and arrange pickup or delivery if needed.</p>
+            </div>
+
+            <form class="contact-form" id="donation-form" action="/api/donation" method="POST">
+                <h3>Your Information</h3>
+                
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Optional - for easier coordination">
+                </div>
+
+                <h3>Donation Details</h3>
+                
+                <div class="form-group">
+                    <label for="donationType">Type of Donation *</label>
+                    <select id="donationType" name="donationType" required>
+                        <option value="">Please select...</option>
+                        <option value="monetary">Monetary Donation</option>
+                        <option value="goods">Goods/Supplies</option>
+                        <option value="services">Services</option>
+                        <option value="other">Other (please specify in message)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="amount">Amount or Estimated Value</label>
+                    <input type="text" id="amount" name="amount" placeholder="e.g., $500, $50/month, or estimated value of goods/services">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Details About Your Donation *</label>
+                    <textarea id="message" name="message" required placeholder="Please provide details about your donation:
+
+For monetary donations:
+- One-time or recurring donation
+- Preferred payment method
+- Any specific program you'd like to support
+
+For goods/supplies:
+- Description of items
+- Quantity and condition
+- Pickup or delivery preference
+
+For services:
+- Type of service you can provide
+- Your availability
+- Any special requirements
+
+We appreciate any additional information that helps us coordinate your generous donation!"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <div style="background-color: #f0f8ff; padding: 15px; border-left: 4px solid #c41e3a; margin: 20px 0;">
+                        <p style="margin: 0; font-size: 14px;">
+                            <strong>Tax Information:</strong> Heartland Boys Home is a licensed residential facility. Our team will provide appropriate documentation for tax-deductible donations and discuss any specific requirements.
+                        </p>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit Donation Inquiry</button>
+            </form>
+            
+            <!-- Success Message (hidden by default) -->
+            <div id="success-message" class="success-message" style="display: none;">
+                <i class="fas fa-check-circle"></i>
+                <h3>Thank You for Your Generosity!</h3>
+                <p>Your donation inquiry has been submitted successfully. Our team will contact you soon to discuss the details.</p>
+            </div>
+            
+            <!-- Error Message (hidden by default) -->
+            <div id="error-message" class="error-message" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Submission Error</h3>
+                <p>There was an error submitting your donation inquiry. Please try again or contact us directly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="content-section">
+        <div class="container">
+            <div class="highlight-box">
+                <h3><i class="fas fa-phone"></i> Questions About Donating?</h3>
+                <p>Contact us at <strong>(402) 759-4334</strong> or email <strong>contact@heartlandboyshome.org</strong> to discuss donation opportunities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Heartland Boys Home Logo" class="logo">
+                        <span class="logo-text">Heartland Boys Home</span>
+                    </div>
+                    <p>Empowering Youth. Restoring Hope. Building Futures.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="staff.html">Our Staff</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 904 Road P, Geneva, NE</p>
+                    <p><i class="fas fa-phone"></i> (402) 759-4334</p>
+                    <p><i class="fas fa-envelope"></i> contact@heartlandboyshome.org</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Partner With Us</h3>
+                    <p>We welcome referrals, community mentors, and volunteers. Donations accepted upon request.</p>
+                    <a href="contact.html" class="btn btn-outline">Get Involved</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Heartland Boys Home. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Handle donation form submission
+        document.getElementById('donation-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const submitButton = this.querySelector('button[type="submit"]');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Hide previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Show loading state
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+            
+            try {
+                const response = await fetch('/api/donation', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    successMessage.style.display = 'block';
+                    this.reset();
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error(result.message || 'Submission failed');
+                }
+            } catch (error) {
+                console.error('Donation form error:', error);
+                errorMessage.style.display = 'block';
+                errorMessage.scrollIntoView({ behavior: 'smooth' });
+            } finally {
+                submitButton.textContent = 'Submit Donation Inquiry';
+                submitButton.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

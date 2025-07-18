@@ -1,0 +1,23 @@
+Image Folder for Heartland Boys Home Website
+
+Please add the following images to this folder:
+
+Required Images:
+- logo.png (Heartland Boys Home logo)
+- hero-image.jpg (Main hero section image)
+- facility-exterior.jpg (Building exterior)
+- classroom.jpg (Educational spaces)
+- common-area.jpg (Living/recreation areas)
+
+Optional Images:
+- staff-photos/ (folder for individual staff photos)
+- program-images/ (folder for program-specific images)
+- testimonial-images/ (folder for testimonial photos if available)
+
+Image Guidelines:
+- Logo: PNG format, transparent background, 200x80px recommended
+- Photos: JPG format, 800x600px minimum resolution
+- Keep file sizes reasonable for web use (under 500KB each)
+- Use descriptive, web-friendly filenames (no spaces, use hyphens)
+
+Once you add images, you can delete this placeholder file.

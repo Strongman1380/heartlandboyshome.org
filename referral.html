@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral Form - Heartland Boys Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo.png" alt="Heartland Boys Home Logo" class="logo">
+                <span class="logo-text">Heartland Boys Home</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="programs.html" class="nav-link">Programs</a></li>
+                <li class="nav-item"><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li class="nav-item"><a href="staff.html" class="nav-link">Staff</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Referral Form</h1>
+            <p>Submit a referral for placement at Heartland Boys Home. Please provide detailed information to help us assess the youth's needs and determine if our program is appropriate.</p>
+        </div>
+    </section>
+
+    <!-- Referral Form -->
+    <section class="content-section">
+        <div class="container">
+            <div class="highlight-box">
+                <h3><i class="fas fa-info-circle"></i> Important Information</h3>
+                <p>This form is for professional referrals only. All referrals must come from authorized agencies or professionals. Please ensure you have permission to share the youth's information before submitting.</p>
+            </div>
+
+            <form class="contact-form" id="referral-form" action="/api/referral" method="POST">
+                <h3>Referring Professional Information</h3>
+                
+                <div class="form-group">
+                    <label for="referrerName">Your Full Name *</label>
+                    <input type="text" id="referrerName" name="referrerName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="organization">Organization/Agency *</label>
+                    <input type="text" id="organization" name="organization" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <h3>Youth Information</h3>
+                
+                <div class="form-group">
+                    <label for="youthName">Youth's Full Name *</label>
+                    <input type="text" id="youthName" name="youthName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">Age *</label>
+                    <select id="age" name="age" required>
+                        <option value="">Select age...</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="currentPlacement">Current Placement/Living Situation *</label>
+                    <input type="text" id="currentPlacement" name="currentPlacement" required placeholder="e.g., Foster home, detention center, family home, etc.">
+                </div>
+                
+                <div class="form-group">
+                    <label for="urgency">Placement Urgency *</label>
+                    <select id="urgency" name="urgency" required>
+                        <option value="">Select urgency level...</option>
+                        <option value="immediate">Immediate - Placement needed within 24-48 hours</option>
+                        <option value="within-week">Within a week</option>
+                        <option value="within-month">Within a month</option>
+                        <option value="planning">Planning ahead - No immediate urgency</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="background">Background Information & Reason for Referral *</label>
+                    <textarea id="background" name="background" required placeholder="Please provide detailed information about:
+- Behavioral, emotional, or mental health challenges
+- Substance abuse history (if applicable)
+- Trauma history
+- Legal/juvenile justice involvement
+- Educational needs
+- Family situation
+- Previous placements
+- Specific goals for placement
+- Any safety concerns or special considerations
+
+The more information you provide, the better we can assess if our program is appropriate and prepare for the youth's potential placement."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <div style="background-color: #f0f8ff; padding: 15px; border-left: 4px solid #c41e3a; margin: 20px 0;">
+                        <p style="margin: 0; font-size: 14px;">
+                            <strong>Privacy Notice:</strong> By submitting this form, you confirm that you have the authority to share this information and that the youth/guardian has been informed of this referral. All information will be kept confidential and used only for assessment purposes.
+                        </p>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit Referral</button>
+            </form>
+            
+            <!-- Success Message (hidden by default) -->
+            <div id="success-message" class="success-message" style="display: none;">
+                <i class="fas fa-check-circle"></i>
+                <h3>Referral Submitted Successfully!</h3>
+                <p>Thank you for your referral. Our admissions team will review the information and contact you soon.</p>
+            </div>
+            
+            <!-- Error Message (hidden by default) -->
+            <div id="error-message" class="error-message" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Submission Error</h3>
+                <p>There was an error submitting your referral. Please try again or contact us directly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="content-section">
+        <div class="container">
+            <div class="highlight-box">
+                <h3><i class="fas fa-phone"></i> Need Immediate Assistance?</h3>
+                <p>For urgent referrals or questions, please call us directly at <strong>(402) 759-4334</strong> or email <strong>contact@heartlandboyshome.org</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Heartland Boys Home Logo" class="logo">
+                        <span class="logo-text">Heartland Boys Home</span>
+                    </div>
+                    <p>Empowering Youth. Restoring Hope. Building Futures.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="staff.html">Our Staff</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 904 Road P, Geneva, NE</p>
+                    <p><i class="fas fa-phone"></i> (402) 759-4334</p>
+                    <p><i class="fas fa-envelope"></i> contact@heartlandboyshome.org</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Partner With Us</h3>
+                    <p>We welcome referrals, community mentors, and volunteers. Donations accepted upon request.</p>
+                    <a href="contact.html" class="btn btn-outline">Get Involved</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Heartland Boys Home. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Handle referral form submission
+        document.getElementById('referral-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const submitButton = this.querySelector('button[type="submit"]');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Hide previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Show loading state
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+            
+            try {
+                const response = await fetch('/api/referral', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    successMessage.style.display = 'block';
+                    this.reset();
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error(result.message || 'Submission failed');
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                errorMessage.style.display = 'block';
+                errorMessage.scrollIntoView({ behavior: 'smooth' });
+            } finally {
+                submitButton.textContent = 'Submit Referral';
+                submitButton.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

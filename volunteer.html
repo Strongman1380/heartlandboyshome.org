@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Application - Heartland Boys Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo.png" alt="Heartland Boys Home Logo" class="logo">
+                <span class="logo-text">Heartland Boys Home</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="programs.html" class="nav-link">Programs</a></li>
+                <li class="nav-item"><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li class="nav-item"><a href="staff.html" class="nav-link">Staff</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Volunteer Application</h1>
+            <p>Join our team of dedicated volunteers and make a positive impact in the lives of young men working toward brighter futures.</p>
+        </div>
+    </section>
+
+    <!-- Volunteer Opportunities -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Volunteer Opportunities</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3><i class="fas fa-user-friends"></i> Mentoring</h3>
+                    <p>Provide one-on-one guidance and support to help youth develop positive relationships and life skills.</p>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-book"></i> Tutoring</h3>
+                    <p>Help with educational support, homework assistance, and academic skill development.</p>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-basketball-ball"></i> Recreation</h3>
+                    <p>Lead recreational activities, sports, games, and outdoor adventures that promote teamwork and fun.</p>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-tools"></i> Life Skills</h3>
+                    <p>Teach practical skills like cooking, budgeting, job readiness, and independent living preparation.</p>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-hammer"></i> Maintenance</h3>
+                    <p>Help with facility maintenance, grounds keeping, and improvement projects.</p>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-calendar-alt"></i> Events</h3>
+                    <p>Assist with special events, fundraisers, and community outreach activities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Application Form -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Volunteer Application</h2>
+            
+            <div class="highlight-box">
+                <h3><i class="fas fa-info-circle"></i> Before You Apply</h3>
+                <p>All volunteers must complete a background check and attend orientation training. We welcome volunteers of all skill levels and backgrounds who are committed to supporting youth development.</p>
+            </div>
+
+            <form class="contact-form" id="volunteer-form" action="/api/volunteer" method="POST">
+                <h3>Personal Information</h3>
+                
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Address *</label>
+                    <textarea id="address" name="address" required placeholder="Street address, city, state, zip code"></textarea>
+                </div>
+
+                <h3>Volunteer Interests</h3>
+                
+                <div class="form-group">
+                    <label for="volunteerType">Primary Volunteer Interest *</label>
+                    <select id="volunteerType" name="volunteerType" required>
+                        <option value="">Please select...</option>
+                        <option value="mentoring">Mentoring</option>
+                        <option value="tutoring">Tutoring</option>
+                        <option value="recreation">Recreation & Sports</option>
+                        <option value="life-skills">Life Skills Training</option>
+                        <option value="maintenance">Maintenance & Grounds</option>
+                        <option value="events">Events & Fundraising</option>
+                        <option value="other">Other (please specify in experience section)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="availability">Availability *</label>
+                    <textarea id="availability" name="availability" required placeholder="Please describe your availability (days of week, times, frequency). For example: 'Weekday evenings 6-8pm, twice per week' or 'Saturday mornings, monthly'"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="experience">Experience & Motivation *</label>
+                    <textarea id="experience" name="experience" required placeholder="Please tell us about:
+- Any relevant experience working with youth
+- Special skills or talents you could share
+- Why you want to volunteer with Heartland Boys Home
+- What you hope to contribute to our mission
+
+This helps us match you with the best volunteer opportunities."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <div style="background-color: #f0f8ff; padding: 15px; border-left: 4px solid #c41e3a; margin: 20px 0;">
+                        <p style="margin: 0; font-size: 14px;">
+                            <strong>Background Check:</strong> All volunteers must complete a background check before beginning service. This is required by state licensing and helps ensure the safety of our residents.
+                        </p>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit Application</button>
+            </form>
+            
+            <!-- Success Message (hidden by default) -->
+            <div id="success-message" class="success-message" style="display: none;">
+                <i class="fas fa-check-circle"></i>
+                <h3>Application Submitted Successfully!</h3>
+                <p>Thank you for your interest in volunteering! Our volunteer coordinator will contact you within 3-5 business days.</p>
+            </div>
+            
+            <!-- Error Message (hidden by default) -->
+            <div id="error-message" class="error-message" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Submission Error</h3>
+                <p>There was an error submitting your application. Please try again or contact us directly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="content-section">
+        <div class="container">
+            <div class="highlight-box">
+                <h3><i class="fas fa-phone"></i> Questions About Volunteering?</h3>
+                <p>Contact our volunteer coordinator at <strong>(402) 759-4334</strong> or email <strong>contact@heartlandboyshome.org</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Heartland Boys Home Logo" class="logo">
+                        <span class="logo-text">Heartland Boys Home</span>
+                    </div>
+                    <p>Empowering Youth. Restoring Hope. Building Futures.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="staff.html">Our Staff</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 904 Road P, Geneva, NE</p>
+                    <p><i class="fas fa-phone"></i> (402) 759-4334</p>
+                    <p><i class="fas fa-envelope"></i> contact@heartlandboyshome.org</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Partner With Us</h3>
+                    <p>We welcome referrals, community mentors, and volunteers. Donations accepted upon request.</p>
+                    <a href="contact.html" class="btn btn-outline">Get Involved</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Heartland Boys Home. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Handle volunteer form submission
+        document.getElementById('volunteer-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const submitButton = this.querySelector('button[type="submit"]');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Hide previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Show loading state
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+            
+            try {
+                const response = await fetch('/api/volunteer', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    successMessage.style.display = 'block';
+                    this.reset();
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error(result.message || 'Submission failed');
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                errorMessage.style.display = 'block';
+                errorMessage.scrollIntoView({ behavior: 'smooth' });
+            } finally {
+                submitButton.textContent = 'Submit Application';
+                submitButton.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
