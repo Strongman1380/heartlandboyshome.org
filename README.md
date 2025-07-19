@@ -141,7 +141,7 @@ For technical support or questions about the website, please contact the develop
 **Heartland Boys Home**
 - Address: 904 Road P, Geneva, NE
 - Phone: (402) 759-4334
-- Email: contact@heartlandboyshome.org
+- Email: rschroetlin78@gmail.com
 
 ---
 
