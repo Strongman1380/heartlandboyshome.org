@@ -26,13 +26,26 @@
     <style>
         /* Security: Hide all content until authenticated */
         body {
-            visibility: hidden !important;
-            opacity: 0 !important;
             background: #1a1a1a !important;
         }
         
         .page-content {
             display: none !important;
+        }
+        
+        /* Show loading state */
+        body:not(.authenticated) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        body:not(.authenticated)::before {
+            content: "Loading...";
+            color: #666;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
         }
         
         /* Only show content after authentication */
@@ -750,11 +763,21 @@
             });
         }
         
+        // Check authentication immediately (before DOM is fully loaded)
+        try {
+            checkAuthentication();
+        } catch (error) {
+            console.error('Authentication check failed:', error);
+            // Fallback: show password prompt if authentication fails
+            setTimeout(() => {
+                if (!document.body.classList.contains('authenticated')) {
+                    showPasswordPrompt();
+                }
+            }, 100);
+        }
+        
         // Training-specific JavaScript
         document.addEventListener('DOMContentLoaded', function() {
-            // Check authentication first
-            checkAuthentication();
-            
             // Form submission handler
             const feedbackForm = document.querySelector('.feedback-form');
             if (feedbackForm) {
