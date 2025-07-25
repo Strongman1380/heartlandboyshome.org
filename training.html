@@ -17,9 +17,7 @@
     <meta http-equiv="Expires" content="0">
     <meta name="referrer" content="no-referrer">
     
-    <!-- Prevent page from being embedded in frames -->
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';">
+    <!-- Note: X-Frame-Options and CSP frame-ancestors should be set via HTTP headers on server -->
     
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -507,7 +505,27 @@
     </footer>
     </div> <!-- End page-content -->
 
-    <script src="js/script.js"></script>
+    <script>
+        // Training page specific script - don't load main script.js to avoid conflicts
+        // Handle mobile menu functionality for training page
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+                
+                // Close menu when clicking on a link
+                document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }));
+            }
+        });
+    </script>
     <script>
         // Password Protection System
         const STAFF_PASSWORD = 'HeartlandStaff2025'; // Change this to your desired password
@@ -531,19 +549,22 @@
             }
         });
         
-        // Security: Clear page if developer tools are detected
+        // Security: Clear page if developer tools are detected (only after authentication)
         let devtools = {open: false, orientation: null};
         const threshold = 160;
         setInterval(function() {
-            if (window.outerHeight - window.innerHeight > threshold || 
-                window.outerWidth - window.innerWidth > threshold) {
-                if (!devtools.open) {
-                    devtools.open = true;
-                    // Clear the page if dev tools are opened
-                    document.body.innerHTML = '<div style="text-align:center;padding:50px;color:#666;">Access Denied</div>';
+            // Only check if user is authenticated (to avoid interfering with password entry)
+            if (sessionStorage.getItem(SESSION_KEY)) {
+                if (window.outerHeight - window.innerHeight > threshold || 
+                    window.outerWidth - window.innerWidth > threshold) {
+                    if (!devtools.open) {
+                        devtools.open = true;
+                        // Clear the page if dev tools are opened
+                        document.body.innerHTML = '<div style="text-align:center;padding:50px;color:#666;font-family:Inter,sans-serif;">Access Denied - Developer Tools Detected</div>';
+                    }
+                } else {
+                    devtools.open = false;
                 }
-            } else {
-                devtools.open = false;
             }
         }, 500);
         
@@ -769,15 +790,15 @@
         });
         
         // Add shake animation CSS
-        const style = document.createElement('style');
-        style.textContent = `
+        const shakeStyle = document.createElement('style');
+        shakeStyle.textContent = `
             @keyframes shake {
                 0%, 100% { transform: translateX(0); }
                 25% { transform: translateX(-5px); }
                 75% { transform: translateX(5px); }
             }
         `;
-        document.head.appendChild(style);
+        document.head.appendChild(shakeStyle);
     </script>
 </body>
 </html>
