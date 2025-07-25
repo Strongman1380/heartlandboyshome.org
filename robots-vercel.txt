@@ -1,0 +1,5 @@
+# Robots.txt for .vercel.app deployment
+# This blocks all indexing on the Vercel deployment URL
+
+User-agent: *
+Disallow: /

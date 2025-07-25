@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Training & Resources - Heartland Boys Home</title>
+    <meta name="description" content="Internal staff training resources and updates for Heartland Boys Home team members.">
+    
+    <!-- Prevent search engine crawling -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="bingbot" content="noindex, nofollow">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Training-specific styles */
+        .training-hero {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--secondary-red) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .training-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="20" cy="80" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .training-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .training-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .training-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .training-intro {
+            padding: 60px 0;
+            background: var(--light-gray);
+        }
+        
+        .training-intro-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+        
+        .training-section {
+            padding: 60px 0;
+        }
+        
+        .training-section:nth-child(even) {
+            background: var(--light-gray);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: var(--primary-red);
+            text-align: center;
+        }
+        
+        .training-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .training-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .training-card h3 {
+            color: var(--primary-red);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .training-card p {
+            color: var(--text-gray);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .training-card .date-time {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .resource-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--primary-yellow);
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .resource-card h4 {
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .calendar-widget {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .calendar-placeholder {
+            background: var(--light-gray);
+            height: 300px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-style: italic;
+        }
+        
+        .feedback-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .compliance-footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .compliance-footer p {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .staff-only-badge {
+            display: inline-block;
+            background: var(--primary-yellow);
+            color: var(--text-dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .training-iframe-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .training-iframe-container iframe {
+            width: 100%;
+            height: 450px;
+            border: 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .training-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .training-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .training-section {
+                padding: 40px 0;
+            }
+            
+            .training-iframe-container iframe {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .training-iframe-container iframe {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo.png" alt="Heartland Boys Home Logo" class="logo">
+                <span class="logo-text">Heartland Boys Home</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="programs.html" class="nav-link">Programs</a></li>
+                <li class="nav-item"><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li class="nav-item"><a href="staff.html" class="nav-link">Staff</a></li>
+                <li class="nav-item"><a href="training.html" class="nav-link active">Training</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="training-hero">
+        <div class="training-hero-content">
+            <div class="staff-only-badge">
+                <i class="fas fa-lock"></i> Staff Only
+            </div>
+            <h1>Training & Growth at Heartland</h1>
+            <p>Helping staff grow, so our youth can thrive.</p>
+            <a href="#resources" class="btn btn-primary">View Training Resources</a>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="training-intro">
+        <div class="container">
+            <div class="training-intro-content">
+                <p>At Heartland Boys Home, we believe staff development is essential to youth development. This page offers access to current training materials, updates, and important protocols for new and ongoing team members. Whether you're new to the program or deepening your expertise, this is your central hub for learning.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Trainings & Events -->
+    <section class="training-section">
+        <div class="container">
+            <h2 class="section-title">Upcoming Trainings & Events</h2>
+            
+            <div class="training-card">
+                <div style="text-align: center; padding: 40px; color: var(--text-gray);">
+                    <i class="fas fa-calendar-plus" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
+                    <p style="font-size: 1.2rem; margin-bottom: 10px;">No upcoming trainings scheduled</p>
+                    <p style="font-size: 0.9rem;">Check back soon for new training opportunities</p>
+                </div>
+            </div>
+
+            <div class="calendar-widget">
+                <h3><i class="fas fa-calendar-alt"></i> Training Calendar</h3>
+                <div class="calendar-placeholder">
+                    <p>Interactive calendar widget will be embedded here<br>
+                    <small>Contact IT to integrate with Google Calendar or training management system</small></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Resource Library -->
+    <section class="training-section" id="resources">
+        <div class="container">
+            <h2 class="section-title">Training Archive & Materials</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: var(--text-gray);">
+                Access past training PDFs, protocols, and quick guides here.
+            </p>
+            
+            <!-- Featured Training Course -->
+            <div class="training-card" style="margin-bottom: 40px;">
+                <h3 style="text-align: center; margin-bottom: 20px; color: var(--primary-red);">
+                    <i class="fas fa-play-circle"></i> Featured Training Course
+                </h3>
+                <div class="training-iframe-container" style="margin-bottom: 20px;">
+                    <iframe src="https://app.minilessonsacademy.com/shared/course/13042" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <p style="text-align: center; color: var(--text-gray); font-style: italic;">
+                    Interactive training module - Click to begin or continue your progress
+                </p>
+            </div>
+            
+            <div class="resource-grid">
+                <div class="resource-card" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                    <i class="fas fa-folder-open" style="font-size: 3rem; color: var(--text-light); margin-bottom: 15px;"></i>
+                    <h4 style="color: var(--text-gray); font-weight: 500; margin-bottom: 10px;">Additional Training Materials</h4>
+                    <p style="color: var(--text-light); margin-bottom: 0;">Additional training resources and documents will be uploaded here for easy staff access.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback & Suggestions -->
+    <section class="training-section">
+        <div class="container">
+            <h2 class="section-title">Suggest a Training Topic</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: var(--text-gray);">
+                Help us identify training needs and improve our professional development offerings.
+            </p>
+            
+            <form class="feedback-form">
+                <div class="form-group">
+                    <label for="name">Your Name (Optional)</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="topic">Suggested Training Topic or Resource</label>
+                    <input type="text" id="topic" name="topic" placeholder="What training topic would be helpful?" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reason">How would this help you better support our youth?</label>
+                    <textarea id="reason" name="reason" placeholder="Describe how this training would benefit your work with residents..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="format">Preferred Format</label>
+                    <select id="format" name="format" style="width: 100%; padding: 12px 15px; border: 2px solid var(--border-light); border-radius: 8px; font-size: 1rem;">
+                        <option value="">Select preferred format</option>
+                        <option value="in-person">In-Person Workshop</option>
+                        <option value="virtual">Virtual/Online</option>
+                        <option value="self-paced">Self-Paced Materials</option>
+                        <option value="no-preference">No Preference</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Submit Suggestion
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Compliance Footer -->
+    <section class="compliance-footer">
+        <div class="container">
+            <p>
+                <i class="fas fa-shield-alt"></i> 
+                All training materials comply with Nebraska DHHS Residential Child-Caring Agency standards and Heartland Boys Home policy. 
+                If you have questions about your training requirements, contact your supervisor for more information.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Heartland Boys Home Logo" class="logo">
+                        <span class="logo-text">Heartland Boys Home</span>
+                    </div>
+                    <p>Empowering Youth. Restoring Hope. Building Futures.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="staff.html">Our Staff</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 904 Road P, Geneva, NE</p>
+                    <p><i class="fas fa-phone"></i> (402) 759-4334</p>
+                    <p><i class="fas fa-envelope"></i> rschroetlin78@gmail.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Staff Resources</h3>
+                    <p>This training portal is for internal staff use only. All materials are confidential and proprietary.</p>
+                    <div style="margin-top: 15px;">
+                        <a href="#resources" class="btn btn-outline">Training Materials</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Heartland Boys Home. All rights reserved. | Staff Training Portal</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Password Protection System
+        const STAFF_PASSWORD = 'HeartlandStaff2025'; // Change this to your desired password
+        const SESSION_KEY = 'heartland_staff_authenticated';
+        
+        function checkAuthentication() {
+            // Check if user is already authenticated in this session
+            const isAuthenticated = sessionStorage.getItem(SESSION_KEY);
+            
+            if (!isAuthenticated) {
+                showPasswordPrompt();
+            }
+        }
+        
+        function showPasswordPrompt() {
+            // Create password overlay
+            const overlay = document.createElement('div');
+            overlay.id = 'password-overlay';
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, var(--primary-red) 0%, var(--secondary-red) 100%);
+                z-index: 10000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Inter', sans-serif;
+            `;
+            
+            overlay.innerHTML = `
+                <div style="
+                    background: white;
+                    padding: 40px;
+                    border-radius: 12px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                    text-align: center;
+                    max-width: 400px;
+                    width: 90%;
+                ">
+                    <div style="margin-bottom: 30px;">
+                        <i class="fas fa-lock" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 20px;"></i>
+                        <h2 style="color: var(--primary-red); margin-bottom: 10px;">Staff Access Required</h2>
+                        <p style="color: var(--text-gray); margin-bottom: 0;">Please enter the staff password to access training materials.</p>
+                    </div>
+                    
+                    <form id="password-form">
+                        <input 
+                            type="password" 
+                            id="password-input" 
+                            placeholder="Enter staff password"
+                            style="
+                                width: 100%;
+                                padding: 12px 15px;
+                                border: 2px solid var(--border-light);
+                                border-radius: 8px;
+                                font-size: 1rem;
+                                margin-bottom: 20px;
+                                box-sizing: border-box;
+                            "
+                            required
+                        >
+                        <button 
+                            type="submit"
+                            style="
+                                background: var(--primary-red);
+                                color: white;
+                                border: none;
+                                padding: 12px 30px;
+                                border-radius: 8px;
+                                font-size: 1rem;
+                                font-weight: 600;
+                                cursor: pointer;
+                                width: 100%;
+                                transition: background 0.3s ease;
+                            "
+                            onmouseover="this.style.background='var(--secondary-red)'"
+                            onmouseout="this.style.background='var(--primary-red)'"
+                        >
+                            <i class="fas fa-unlock"></i> Access Training Portal
+                        </button>
+                    </form>
+                    
+                    <div id="error-message" style="
+                        color: #dc3545;
+                        margin-top: 15px;
+                        font-size: 0.9rem;
+                        display: none;
+                    ">
+                        <i class="fas fa-exclamation-triangle"></i> Incorrect password. Please try again.
+                    </div>
+                    
+                    <p style="
+                        font-size: 0.8rem;
+                        color: var(--text-light);
+                        margin-top: 20px;
+                        margin-bottom: 0;
+                    ">
+                        Contact your supervisor if you need the password.
+                    </p>
+                </div>
+            `;
+            
+            document.body.appendChild(overlay);
+            document.getElementById('password-input').focus();
+            
+            // Handle form submission
+            document.getElementById('password-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const enteredPassword = document.getElementById('password-input').value;
+                
+                if (enteredPassword === STAFF_PASSWORD) {
+                    // Correct password - grant access
+                    sessionStorage.setItem(SESSION_KEY, 'true');
+                    document.body.removeChild(overlay);
+                } else {
+                    // Wrong password - show error
+                    document.getElementById('error-message').style.display = 'block';
+                    document.getElementById('password-input').value = '';
+                    document.getElementById('password-input').focus();
+                    
+                    // Shake animation for error
+                    const form = document.getElementById('password-form');
+                    form.style.animation = 'shake 0.5s ease-in-out';
+                    setTimeout(() => {
+                        form.style.animation = '';
+                    }, 500);
+                }
+            });
+        }
+        
+        // Training-specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication first
+            checkAuthentication();
+            
+            // Form submission handler
+            const feedbackForm = document.querySelector('.feedback-form');
+            if (feedbackForm) {
+                feedbackForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData);
+                    
+                    // Here you would typically send the data to your server
+                    // For now, we'll just show a success message
+                    alert('Thank you for your training suggestion! We will review it and get back to you.');
+                    
+                    // Reset form
+                    this.reset();
+                });
+            }
+            
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+        
+        // Add shake animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

@@ -387,6 +387,53 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// SEO Management - Canonical URLs and Vercel.app blocking
+document.addEventListener('DOMContentLoaded', function() {
+    const currentHost = window.location.hostname;
+    const currentPath = window.location.pathname;
+    const customDomain = 'heartlandboyshome.org';
+    
+    // Set canonical URL to custom domain
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+        canonicalLink = document.createElement('link');
+        canonicalLink.rel = 'canonical';
+        document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.href = `https://${customDomain}${currentPath}`;
+    
+    // Block indexing if on .vercel.app domain
+    if (currentHost.includes('.vercel.app')) {
+        // Add noindex meta tag
+        let robotsMeta = document.querySelector('meta[name="robots"]');
+        if (!robotsMeta) {
+            robotsMeta = document.createElement('meta');
+            robotsMeta.name = 'robots';
+            document.head.appendChild(robotsMeta);
+        }
+        robotsMeta.content = 'noindex, nofollow';
+        
+        // Optional: Add a banner for development/staging
+        if (window.location.search.includes('dev') || window.location.search.includes('staging')) {
+            const devBanner = document.createElement('div');
+            devBanner.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: #ff6b6b;
+                color: white;
+                text-align: center;
+                padding: 10px;
+                z-index: 10000;
+                font-weight: bold;
+            `;
+            devBanner.textContent = 'DEVELOPMENT/STAGING SITE - NOT INDEXED';
+            document.body.insertBefore(devBanner, document.body.firstChild);
+        }
+    }
+});
+
 // Add CSS for hamburger animation
 const style = document.createElement('style');
 style.textContent = `

@@ -57,6 +57,16 @@
     {
       "source": "/404",
       "destination": "/404.html"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots-vercel.txt",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?<subdomain>.*)\\.vercel\\.app"
+        }
+      ]
     }
   ],
   "routes": [
