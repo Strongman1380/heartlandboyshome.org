@@ -276,9 +276,15 @@
         
         .training-courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             margin-bottom: 40px;
+        }
+        
+        @media (min-width: 1200px) {
+            .training-courses-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
         
         .course-icon {
@@ -641,13 +647,64 @@
                 
                 <div class="training-card">
                     <div class="course-icon">
-                        <i class="fas fa-bridge"></i>
+                        <i class="fas fa-road"></i>
                     </div>
                     <h3>Building Bridges: Essential Skills for Youth Transitioning from Residential Care</h3>
                     <p class="course-description">
                         Essential skills and strategies for supporting youth as they transition from residential care to independent living and community integration.
                     </p>
                     <a href="https://app.minilessonsacademy.com/shared/course/13042" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="course-button">
+                        <i class="fas fa-external-link-alt"></i>
+                        Access Course
+                    </a>
+                </div>
+                
+                <div class="training-card">
+                    <div class="course-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Connecting Through Challenge: Trauma-Informed Discipline Strategies</h3>
+                    <p class="course-description">
+                        Learn effective discipline approaches that acknowledge trauma while maintaining structure and promoting healing in residential care settings.
+                    </p>
+                    <a href="https://learn.selsy.io/course/connecting-through-challenge-trauma-informed-discipline-strategies" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="course-button">
+                        <i class="fas fa-external-link-alt"></i>
+                        Access Course
+                    </a>
+                </div>
+                
+                <div class="training-card">
+                    <div class="course-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3>Building Bonds: Understanding Developmental Trauma and Attachment Disorders</h3>
+                    <p class="course-description">
+                        Gain deep insights into how developmental trauma affects attachment and learn strategies for building secure relationships with youth.
+                    </p>
+                    <a href="https://learn.selsy.io/course/building-bonds-understanding-developmental-trauma-and-attachment-disorders" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="course-button">
+                        <i class="fas fa-external-link-alt"></i>
+                        Access Course
+                    </a>
+                </div>
+                
+                <div class="training-card">
+                    <div class="course-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Trauma and Transformation: Building Resilience Across Generations</h3>
+                    <p class="course-description">
+                        Explore how trauma impacts multiple generations and learn evidence-based approaches for building resilience in youth and families.
+                    </p>
+                    <a href="https://learn.selsy.io/course/trauma-and-transformation-building-resilience-across-generations" 
                        target="_blank" 
                        rel="noopener noreferrer" 
                        class="course-button">
