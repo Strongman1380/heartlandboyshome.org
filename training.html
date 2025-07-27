@@ -24,40 +24,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Security: Hide all content until authenticated */
-        body {
-            background: #1a1a1a !important;
-        }
-        
-        .page-content {
-            display: none !important;
-        }
-        
-        /* Show loading state */
-        body:not(.authenticated) {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        
-        body:not(.authenticated)::before {
-            content: "Loading...";
-            color: #666;
-            font-family: 'Inter', sans-serif;
-            font-size: 1.2rem;
-        }
-        
-        /* Only show content after authentication */
-        body.authenticated {
-            visibility: visible !important;
-            opacity: 1 !important;
-            background: var(--bg-light) !important;
-        }
-        
-        body.authenticated .page-content {
-            display: block !important;
-        }
+
         
         /* Training-specific styles */
         .training-hero {
@@ -164,53 +131,9 @@
             margin-bottom: 15px;
         }
         
-        .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
+
         
-        .resource-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-left: 4px solid var(--primary-yellow);
-        }
-        
-        .resource-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-        
-        .resource-card h4 {
-            color: var(--primary-red);
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-        
-        .calendar-widget {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            margin-top: 30px;
-            text-align: center;
-        }
-        
-        .calendar-placeholder {
-            background: var(--light-gray);
-            height: 300px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-gray);
-            font-style: italic;
-        }
+
         
         .feedback-form {
             max-width: 600px;
@@ -353,6 +276,16 @@
             margin-right: 8px;
         }
         
+        .course-button:hover[style*="background: var(--primary-yellow)"] {
+            background: #f59e0b !important;
+            color: var(--text-dark) !important;
+        }
+        
+        .course-button:hover[style*="background: var(--secondary-red)"] {
+            background: #b91c1c !important;
+            color: white !important;
+        }
+        
 
         
         @media (max-width: 768px) {
@@ -373,10 +306,7 @@
                 gap: 20px;
             }
             
-            .resource-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
+
             
             .training-section {
                 padding: 40px 0;
@@ -469,70 +399,13 @@
                 padding: 0 10px;
             }
             
-            /* Mobile password overlay adjustments */
-            #password-overlay .fas.fa-lock {
-                font-size: 2.5rem !important;
-            }
-            
-            #password-overlay h2 {
-                font-size: 1.5rem !important;
-            }
-            
-            #password-overlay p {
-                font-size: 0.9rem !important;
-            }
-            
-            #password-overlay div[style*="padding: 40px"] {
-                padding: 30px 20px !important;
-            }
+
         }
 
-        /* Password Overlay Styles */
-        #password-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--secondary-red) 100%);
-            z-index: 10000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Inter', sans-serif;
-        }
-        .password-prompt-box {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            margin: 20px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        .password-prompt-box .icon-header {
-            margin-bottom: 30px;
-        }
-        .password-prompt-box .icon-header .fas {
-            font-size: 3rem;
-            color: var(--primary-red);
-            margin-bottom: 20px;
-        }
-        .password-prompt-box h2 {
-            color: var(--primary-red);
-            margin-bottom: 10px;
-        }
-        .password-prompt-box p {
-            color: var(--text-gray);
-            margin-bottom: 0;
-        }
+
     </style>
 </head>
 <body>
-    <div class="page-content">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -578,28 +451,7 @@
         </div>
     </section>
 
-    <!-- Upcoming Trainings & Events -->
-    <section class="training-section">
-        <div class="container">
-            <h2 class="section-title">Upcoming Trainings & Events</h2>
-            
-            <div class="training-card">
-                <div style="text-align: center; padding: 40px; color: var(--text-gray);">
-                    <i class="fas fa-calendar-plus" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
-                    <p style="font-size: 1.2rem; margin-bottom: 10px;">No upcoming trainings scheduled</p>
-                    <p style="font-size: 0.9rem;">Check back soon for new training opportunities</p>
-                </div>
-            </div>
 
-            <div class="calendar-widget">
-                <h3><i class="fas fa-calendar-alt"></i> Training Calendar</h3>
-                <div class="calendar-placeholder">
-                    <p>Interactive calendar widget will be embedded here<br>
-                    <small>Contact IT to integrate with Google Calendar or training management system</small></p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Training Resource Library -->
     <section class="training-section" id="resources">
@@ -609,8 +461,43 @@
                 Access past training PDFs, protocols, and quick guides here.
             </p>
             
-            <!-- Featured Training Courses -->
+            <!-- Featured Training Courses - UPDATED WITH TRAUMA 101 -->
             <div class="training-courses-grid">
+                <div class="training-card">
+                    <div class="course-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3>Trauma 101 Day 1</h3>
+                    <p class="course-description">
+                        Foundational training on understanding trauma and its impact on youth development and behavior.
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="https://drive.google.com/file/d/1zpX2zaZq8vCO05r5042OMX9pZgIQz9pt/view?usp=drive_link" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="course-button">
+                            <i class="fas fa-video"></i>
+                            Watch Video
+                        </a>
+                        <a href="https://docs.google.com/document/d/10-y3UUnXpaIcYXnE8nPlH2SY9jgVdtLP12T5SNZs9Qc/edit?usp=drive_link" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="course-button" 
+                           style="background: var(--primary-yellow); color: var(--text-dark);">
+                            <i class="fas fa-file-alt"></i>
+                            Training Materials
+                        </a>
+                        <a href="https://form.jotform.com/252040888432053" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="course-button" 
+                           style="background: var(--secondary-red);">
+                            <i class="fas fa-clipboard-check"></i>
+                            Knowledge Test
+                        </a>
+                    </div>
+                </div>
+                
                 <div class="training-card">
                     <div class="course-icon">
                         <i class="fas fa-heart"></i>
@@ -713,14 +600,7 @@
                     </a>
                 </div>
             </div>
-            
-            <div class="resource-grid">
-                <div class="resource-card" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
-                    <i class="fas fa-folder-open" style="font-size: 3rem; color: var(--text-light); margin-bottom: 15px;"></i>
-                    <h4 style="color: var(--text-gray); font-weight: 500; margin-bottom: 10px;">Additional Training Materials</h4>
-                    <p style="color: var(--text-light); margin-bottom: 0;">Additional training resources and documents will be uploaded here for easy staff access.</p>
-                </div>
-            </div>
+
         </div>
     </section>
 
@@ -824,8 +704,6 @@
             </div>
         </div>
     </footer>
-    </div> <!-- End page-content -->
-
     <script>
         // Training page specific script - don't load main script.js to avoid conflicts
         // Handle mobile menu functionality for training page
@@ -848,245 +726,6 @@
         });
     </script>
     <script>
-        // Password Protection System
-        // This is a SHA-256 hash of the password. The actual password is not stored here.
-        const STAFF_PASSWORD_HASH = '2492a538a25f28b317882856335b80012125c14c714a6323c14828859451432c'; // Hash for 'HeartlandStaff2025'
-        const SESSION_KEY = 'heartland_staff_authenticated';
-        const MAX_ATTEMPTS = 3;
-        const LOCKOUT_TIME = 30 * 60 * 1000; // 30 minutes in milliseconds
-        
-        function checkAuthentication() {
-            // Check if user is locked out
-            const lockoutTime = localStorage.getItem('training_lockout');
-            if (lockoutTime && Date.now() < parseInt(lockoutTime)) {
-                showLockoutMessage();
-                return;
-            }
-            
-            // Check if user is already authenticated in this session
-            const isAuthenticated = sessionStorage.getItem(SESSION_KEY);
-            
-            if (!isAuthenticated) {
-                showPasswordPrompt();
-            } else {
-                // User is authenticated, show the page
-                document.body.classList.add('authenticated');
-            }
-        }
-        
-        function showLockoutMessage() {
-            document.body.innerHTML = `
-                <div style="
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: #1a1a1a;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    color: #ff4444;
-                    font-family: 'Inter', sans-serif;
-                    text-align: center;
-                ">
-                    <div>
-                        <i class="fas fa-lock" style="font-size: 4rem; margin-bottom: 20px;"></i>
-                        <h2>Access Temporarily Locked</h2>
-                        <p>Too many failed attempts. Please try again later.</p>
-                    </div>
-                </div>
-            `;
-        }
-        
-        function showPasswordPrompt() {
-            // Create password overlay
-            const overlay = document.createElement('div');
-            overlay.id = 'password-overlay';
-            
-            overlay.innerHTML = `
-                <div class="password-prompt-box">
-                    <div class="icon-header">
-                        <i class="fas fa-lock"></i>
-                        <h2>Staff Access Required</h2>
-                        <p>Please enter the staff password to access training materials.</p>
-                    </div>
-                    
-                    <form id="password-form">
-                        <div style="position: relative; margin-bottom: 20px;">
-                            <input 
-                                type="password" 
-                                id="password-input" 
-                                placeholder="Enter staff password"
-                                style="
-                                    width: 100%;
-                                    padding: 12px 45px 12px 15px;
-                                    border: 2px solid var(--border-light);
-                                    border-radius: 8px;
-                                    font-size: 1rem;
-                                    box-sizing: border-box;
-                                "
-                                required
-                            >
-                            <button 
-                                type="button"
-                                id="toggle-password"
-                                style="
-                                    position: absolute;
-                                    right: 12px;
-                                    top: 50%;
-                                    transform: translateY(-50%);
-                                    background: none;
-                                    border: none;
-                                    color: var(--text-gray);
-                                    cursor: pointer;
-                                    font-size: 1rem;
-                                    padding: 0;
-                                    width: 20px;
-                                    height: 20px;
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: center;
-                                "
-                                title="Show/Hide Password"
-                            >
-                                <i class="fas fa-eye" id="eye-icon"></i>
-                            </button>
-                        </div>
-                        <button 
-                            type="submit"
-                            style="
-                                background: var(--primary-red);
-                                color: white;
-                                border: none;
-                                padding: 12px 30px;
-                                border-radius: 8px;
-                                font-size: 1rem;
-                                font-weight: 600;
-                                cursor: pointer;
-                                width: 100%;
-                                transition: background 0.3s ease;
-                            "
-                            onmouseover="this.style.background='var(--secondary-red)'"
-                            onmouseout="this.style.background='var(--primary-red)'"
-                        >
-                            <i class="fas fa-unlock"></i> Access Training Portal
-                        </button>
-                    </form>
-                    
-                    <div id="error-message" style="
-                        color: #dc3545;
-                        margin-top: 15px;
-                        font-size: 0.9rem;
-                        display: none;
-                    ">
-                        <i class="fas fa-exclamation-triangle"></i> Incorrect password. Please try again.
-                    </div>
-                    
-                    <p style="
-                        font-size: 0.8rem;
-                        color: var(--text-light);
-                        margin-top: 20px;
-                        margin-bottom: 0;
-                    ">
-                        Contact your supervisor if you need the password.
-                    </p>
-                </div>
-            `;
-            
-            document.body.appendChild(overlay);
-            document.getElementById('password-input').focus();
-            
-            // Handle password visibility toggle
-            document.getElementById('toggle-password').addEventListener('click', function() {
-                const passwordInput = document.getElementById('password-input');
-                const eyeIcon = document.getElementById('eye-icon');
-                
-                if (passwordInput.type === 'password') {
-                    passwordInput.type = 'text';
-                    eyeIcon.className = 'fas fa-eye-slash';
-                    this.title = 'Hide Password';
-                } else {
-                    passwordInput.type = 'password';
-                    eyeIcon.className = 'fas fa-eye';
-                    this.title = 'Show Password';
-                }
-            });
-            
-            // Handle form submission
-            document.getElementById('password-form').addEventListener('submit', async function(e) {
-                e.preventDefault();
-                const enteredPassword = document.getElementById('password-input').value;
-                
-                // Hash the entered password using SHA-256
-                const encoder = new TextEncoder();
-                const data = encoder.encode(enteredPassword);
-                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-                const hashArray = Array.from(new Uint8Array(hashBuffer));
-                const enteredHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-
-                // Disable button during check
-                const submitButton = this.querySelector('button[type="submit"]');
-                submitButton.disabled = true;
-                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
-
-                
-                if (enteredHash === STAFF_PASSWORD_HASH) {
-                    // Correct password - grant access
-                    sessionStorage.setItem(SESSION_KEY, 'true');
-                    localStorage.removeItem('training_attempts'); // Clear failed attempts
-                    localStorage.removeItem('training_lockout'); // Clear any lockout
-                    document.body.classList.add('authenticated');
-                    document.body.removeChild(overlay);
-                } else {
-                    // Wrong password - track attempts
-                    let attempts = parseInt(localStorage.getItem('training_attempts') || '0') + 1;
-                    localStorage.setItem('training_attempts', attempts.toString());
-                    
-                    if (attempts >= MAX_ATTEMPTS) {
-                        // Lock out user
-                        localStorage.setItem('training_lockout', (Date.now() + LOCKOUT_TIME).toString());
-                        showLockoutMessage();
-                        return;
-                    }
-                    
-                    // Show error with remaining attempts
-                    const remainingAttempts = MAX_ATTEMPTS - attempts;
-                    document.getElementById('error-message').innerHTML = `
-                        <i class="fas fa-exclamation-triangle"></i> 
-                        Incorrect password. ${remainingAttempts} attempt${remainingAttempts !== 1 ? 's' : ''} remaining.
-                    `;
-                    document.getElementById('error-message').style.display = 'block';
-                    document.getElementById('password-input').value = '';
-                    document.getElementById('password-input').focus();
-                    
-                    // Shake animation for error
-                    const form = document.getElementById('password-form');
-                    form.style.animation = 'shake 0.5s ease-in-out';
-                    setTimeout(() => {
-                        form.style.animation = '';
-                    }, 500);
-
-                    // Re-enable button
-                    submitButton.disabled = false;
-                    submitButton.innerHTML = '<i class="fas fa-unlock"></i> Access Training Portal';
-                }
-            });
-        }
-        
-        // Check authentication immediately (before DOM is fully loaded)
-        try {
-            checkAuthentication();
-        } catch (error) {
-            console.error('Authentication check failed:', error);
-            // Fallback: show password prompt if authentication fails
-            setTimeout(() => {
-                if (!document.body.classList.contains('authenticated')) {
-                    showPasswordPrompt();
-                }
-            }, 100);
-        }
-        
         // Training-specific JavaScript
         document.addEventListener('DOMContentLoaded', function() {
             // Feedback form submission handler
@@ -1127,17 +766,6 @@
                 });
             });
         });
-        
-        // Add shake animation CSS
-        const shakeStyle = document.createElement('style');
-        shakeStyle.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                25% { transform: translateX(-5px); }
-                75% { transform: translateX(5px); }
-            }
-        `;
-        document.head.appendChild(shakeStyle);
     </script>
 </body>
 </html>
