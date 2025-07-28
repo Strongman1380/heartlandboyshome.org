@@ -1230,3 +1230,33 @@ body {
         padding-bottom: 20px;
     }
 }
+
+/* Staff Login Button Styling */
+.staff-login-btn {
+    background: linear-gradient(135deg, var(--primary-red), var(--secondary-red)) !important;
+    color: white !important;
+    border-radius: 20px !important;
+    padding: 8px 16px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    border: 2px solid transparent !important;
+}
+
+.staff-login-btn:hover {
+    background: linear-gradient(135deg, var(--secondary-red), var(--primary-red)) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3) !important;
+}
+
+.staff-login-btn:active {
+    transform: translateY(0) !important;
+}
+
+/* Mobile responsive for staff login button */
+@media (max-width: 768px) {
+    .staff-login-btn {
+        margin-top: 10px !important;
+        display: block !important;
+        text-align: center !important;
+    }
+}

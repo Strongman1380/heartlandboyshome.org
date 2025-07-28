@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Training & Resources - Heartland Boys Home</title>
-    <meta name="description" content="Internal staff training resources and updates for Heartland Boys Home team members.">
+    <title>Staff Portal - Training & Directory - Heartland Boys Home</title>
+    <meta name="description" content="Internal staff portal with training resources, staff directory, and updates for Heartland Boys Home team members.">
     
     <!-- Prevent search engine crawling -->
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
@@ -66,6 +66,43 @@
             font-size: 1.3rem;
             margin-bottom: 30px;
             opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons .btn {
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .hero-buttons .btn-primary {
+            background: var(--primary-yellow);
+            color: var(--text-dark);
+        }
+
+        .hero-buttons .btn-primary:hover {
+            background: #f1c40f;
+            transform: translateY(-2px);
+        }
+
+        .hero-buttons .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .hero-buttons .btn-secondary:hover {
+            background: white;
+            color: var(--primary-red);
+            transform: translateY(-2px);
         }
         
         .training-intro {
@@ -402,8 +439,126 @@
 
         }
 
+        /* Staff Directory Styles */
+        .staff-category {
+            margin-bottom: 50px;
+        }
+
+        .staff-category-title {
+            color: var(--primary-red);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .staff-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .staff-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .staff-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-red), var(--secondary-red));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .staff-card h4 {
+            color: var(--primary-red);
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .staff-title {
+            color: var(--secondary-red);
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .staff-card p {
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .staff-expertise {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        .staff-expertise strong {
+            color: var(--primary-red);
+        }
+
+        /* Responsive Design for Staff Directory */
+        @media (max-width: 768px) {
+            .staff-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .staff-card {
+                padding: 20px;
+            }
+
+            .staff-category-title {
+                font-size: 1.5rem;
+            }
+
+            .staff-card h4 {
+                font-size: 1.2rem;
+            }
+        }
+
 
     </style>
+    
+    <!-- Firebase v8 SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script>
+      // Your Firebase Config (from Firebase Console > Project Settings)
+      const firebaseConfig = {
+        apiKey: "AIzaSyAHllDvthoajI1roNUrrzBIN2eYc_zFRiU",
+        authDomain: "staff-training-page.firebaseapp.com",
+        projectId: "staff-training-page",
+        storageBucket: "staff-training-page.firebasestorage.app",
+        messagingSenderId: "479538248248",
+        appId: "1:479538248248:web:b308aa5a1ed71d609444cd",
+        measurementId: "G-LP87FQQ2VC"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -418,9 +573,8 @@
                 <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="programs.html" class="nav-link">Programs</a></li>
                 <li class="nav-item"><a href="admissions.html" class="nav-link">Admissions</a></li>
-                <li class="nav-item"><a href="staff.html" class="nav-link">Staff</a></li>
-                <li class="nav-item"><a href="training.html" class="nav-link active">Training</a></li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="training.html" class="nav-link active">Staff Portal</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -430,15 +584,21 @@
         </div>
     </nav>
 
+    <!-- Protected Content Container -->
+    <div id="protectedContent" style="display: none;">
+
     <!-- Hero Banner -->
     <section class="training-hero">
         <div class="training-hero-content">
             <div class="staff-only-badge">
                 <i class="fas fa-lock"></i> Staff Only
             </div>
-            <h1>Training & Growth at Heartland</h1>
-            <p>Helping staff grow, so our youth can thrive.</p>
-            <a href="#resources" class="btn btn-primary">View Training Resources</a>
+            <h1>Staff Portal - Heartland Boys Home</h1>
+            <p>Training resources, staff directory, and professional development - helping staff grow so our youth can thrive.</p>
+            <div class="hero-buttons">
+                <a href="#resources" class="btn btn-primary">View Training Resources</a>
+                <a href="#staff-directory" class="btn btn-secondary">Staff Directory</a>
+            </div>
         </div>
     </section>
 
@@ -654,6 +814,227 @@
         </div>
     </section>
 
+    <!-- Staff Directory Section -->
+    <section class="training-section" id="staff-directory">
+        <div class="container">
+            <h2 class="section-title">Staff Directory</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: var(--text-gray);">
+                Meet our dedicated team of professionals committed to empowering youth through structure, education, emotional support, and positive reinforcement.
+            </p>
+
+            <!-- Leadership Team -->
+            <div class="staff-category">
+                <h3 class="staff-category-title">Leadership Team</h3>
+                <div class="staff-grid">
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Ed Young</h4>
+                        <div class="staff-title">Executive Director</div>
+                        <p>Ed has led Heartland Boys Home since the beginning, bringing decades of experience in youth services and group home care. His vision and leadership, alongside Mark Billingsley, have shaped Heartland Boys Home into a place where young men working through trauma, chemical dependency, and behavioral issues can find stability, support, and hope for their futures.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Program Leadership, Youth Development, Organizational Management
+                        </div>
+                    </div>
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Mark A. Billingsley</h4>
+                        <div class="staff-title">Co-Founder & Leadership Team</div>
+                        <p>Mark has been part of the leadership team alongside Ed since the beginning of Heartland Boys Home. Together, they strive for the best care possible for the boys, ensuring that every aspect of the program meets the highest standards of excellence and compassionate care.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Program Leadership, Quality Assurance, Strategic Planning
+                        </div>
+                    </div>
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Ryan Schroetlin</h4>
+                        <div class="staff-title">Program Director</div>
+                        <p>Ryan is a former YRTC Geneva staff member with deep expertise in the juvenile justice system. His hands-on experience with system-involved youth brings valuable insight to our programming and helps ensure smooth transitions for our residents.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Juvenile Justice, Program Development, Case Management
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Direct Care Staff -->
+            <div class="staff-category">
+                <h3 class="staff-category-title">Direct Care Staff</h3>
+                <div class="staff-grid">
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Kathleen E. Coffman</h4>
+                        <div class="staff-title">Direct Care Staff</div>
+                        <p>Kathleen provides compassionate direct care to our residents, ensuring their daily needs are met with professionalism and understanding. Her dedication to youth development helps create a supportive environment for healing and growth.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Direct Care, Youth Support, Daily Living Skills
+                        </div>
+                    </div>
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Holly J. Davenport</h4>
+                        <div class="staff-title">Direct Care Staff - Night Shift</div>
+                        <p>Holly brings experience and empathy to her night shift role, providing overnight supervision and support to ensure residents feel safe and secure during evening hours. Her calm presence helps maintain stability throughout the night.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Night Shift Care, Behavioral Support, Crisis Response
+                        </div>
+                    </div>
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Richard M. Turner</h4>
+                        <div class="staff-title">Direct Care Staff - Night Shift</div>
+                        <p>Richard provides dedicated overnight care and supervision, ensuring the safety and well-being of residents during night hours. His reliable presence and professional approach help maintain a secure and supportive environment throughout the evening.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Night Shift Care, Overnight Supervision, Safety Management
+                        </div>
+                    </div>
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Matthew R. Frey</h4>
+                        <div class="staff-title">Direct Care Staff</div>
+                        <p>Matthew provides consistent and reliable direct care services, helping residents navigate their daily challenges while building positive relationships and life skills.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Direct Care, Crisis Intervention, Youth Engagement
+                        </div>
+                    </div>
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Tonia S. Frey</h4>
+                        <div class="staff-title">Direct Care Staff</div>
+                        <p>Tonia contributes to our direct care team with dedication and professionalism, ensuring that each resident receives the individual attention and support they need for successful outcomes.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Direct Care, Individual Support, Relationship Building
+                        </div>
+                    </div>
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Brandon J. Hinrichs</h4>
+                        <div class="staff-title">Direct Care Staff</div>
+                        <p>Brandon brings over two decades of experience in juvenile justice, technology, and probation to his direct care role. He combines traditional youth services with innovative approaches to help residents succeed.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Direct Care, Technology Integration, Juvenile Justice
+                        </div>
+                    </div>
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Simone M. Lee</h4>
+                        <div class="staff-title">Direct Care Staff</div>
+                        <p>Simone provides compassionate direct care services, working with residents to develop essential life skills and positive coping strategies for their future success.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Direct Care, Life Skills Development, Youth Advocacy
+                        </div>
+                    </div>
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Joni Payne</h4>
+                        <div class="staff-title">Kitchen Manager & Direct Care Staff</div>
+                        <p>Joni manages the kitchen operations, oversees health and nutrition, and provides all meals for the residents. In addition to her culinary responsibilities, she contributes to our direct care team with experience and dedication, helping residents build confidence and develop the skills they need for successful community reintegration.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Kitchen Management, Health & Nutrition, Meal Planning, Direct Care, Youth Development
+                        </div>
+                    </div>
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Allen R. Schumacher</h4>
+                        <div class="staff-title">Direct Care Staff</div>
+                        <p>Allen has dedicated 19 years to youth programming, bringing extensive experience in mentoring and supporting young people through challenging times. His long tenure reflects his commitment to making a lasting difference in the lives of youth.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Direct Care, Youth Mentoring, Long-term Relationship Building
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Care Coordination -->
+            <div class="staff-category">
+                <h3 class="staff-category-title">Care Coordination & Support</h3>
+                <div class="staff-grid">
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Schandra M. Paling</h4>
+                        <div class="staff-title">Care Coordinator/Clerical/Direct Care</div>
+                        <p>Schandra serves in multiple capacities, coordinating care plans, managing administrative duties, and providing direct care services. Her versatile role ensures seamless communication and coordination across all aspects of our program.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Care Coordination, Administrative Support, Direct Care
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Educational Team -->
+            <div class="staff-category">
+                <h3 class="staff-category-title">Educational Team - Berniklau Education Solutions</h3>
+                <div class="staff-grid">
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Scott Allen</h4>
+                        <div class="staff-title">Certified Special Education Teacher</div>
+                        <p>Scott leads our educational programming with specialized training in special education. He ensures that each youth receives individualized instruction that meets their unique learning needs and helps them achieve academic success.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Special Education, Individualized Learning, Academic Support
+                        </div>
+                    </div>
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Miko Fairy</h4>
+                        <div class="staff-title">Special Education Paraprofessional</div>
+                        <p>Miko supports our educational team as a paraprofessional, working closely with students to provide additional academic assistance and ensure that learning objectives are met in a supportive environment.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Educational Support, Student Assistance, Learning Facilitation
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mental Health Team -->
+            <div class="staff-category">
+                <h3 class="staff-category-title">Mental Health & Therapy</h3>
+                <div class="staff-grid">
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Kimberly Krejci, LMHP</h4>
+                        <div class="staff-title">Licensed Mental Health Practitioner</div>
+                        <p>Kimberly provides individual and group therapy services to our residents, specializing in trauma-informed care and evidence-based therapeutic interventions. Her expertise helps youth process their experiences and develop healthy coping strategies.</p>
+                        <div class="staff-expertise">
+                            <strong>Expertise:</strong> Trauma-Informed Care, Individual Therapy, Group Therapy, CBT
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Compliance Footer -->
     <section class="compliance-footer">
         <div class="container">
@@ -704,6 +1085,9 @@
             </div>
         </div>
     </footer>
+
+    </div> <!-- End Protected Content -->
+
     <script>
         // Training page specific script - don't load main script.js to avoid conflicts
         // Handle mobile menu functionality for training page
@@ -767,5 +1151,398 @@
             });
         });
     </script>
+
+    <!-- Authentication Modal -->
+    <div id="authModal" class="auth-modal" style="display: none;">
+        <div class="auth-modal-content">
+            <span class="auth-close">&times;</span>
+            <div id="authContainer">
+                <!-- Login Form -->
+                <div id="loginForm" class="auth-form">
+                    <h2>Staff Portal Access</h2>
+                    <p>Welcome to the Heartland Boys Home Staff Portal. Please log in to access training resources, staff directory, and internal communications.</p>
+                    <form id="loginFormElement">
+                        <div class="form-group">
+                            <label for="loginEmail">Email:</label>
+                            <input type="email" id="loginEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password:</label>
+                            <input type="password" id="loginPassword" required>
+                        </div>
+                        <button type="submit" class="auth-btn">Login</button>
+                        <p class="auth-switch">Don't have an account? <a href="#" id="showSignup">Sign up</a></p>
+                    </form>
+                </div>
+
+                <!-- Signup Form -->
+                <div id="signupForm" class="auth-form" style="display: none;">
+                    <h2>Staff Portal Registration</h2>
+                    <p>Create your staff portal account to access training materials, staff directory, and internal resources.</p>
+                    <form id="signupFormElement">
+                        <div class="form-group">
+                            <label for="signupEmail">Email:</label>
+                            <input type="email" id="signupEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password:</label>
+                            <input type="password" id="signupPassword" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password:</label>
+                            <input type="password" id="confirmPassword" required minlength="6">
+                        </div>
+                        <button type="submit" class="auth-btn">Sign Up</button>
+                        <p class="auth-switch">Already have an account? <a href="#" id="showLogin">Login</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Info Display -->
+    <div id="userInfo" class="user-info" style="display: none;">
+        <span id="userEmail"></span>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
+
+    <!-- Firebase Authentication Script -->
+    <script>
+        // Authentication state management
+        let currentUser = null;
+
+        // DOM elements
+        const authModal = document.getElementById('authModal');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const userInfo = document.getElementById('userInfo');
+        const protectedContent = document.getElementById('protectedContent');
+        const authClose = document.querySelector('.auth-close');
+
+        // Show/hide forms
+        document.getElementById('showSignup').addEventListener('click', (e) => {
+            e.preventDefault();
+            loginForm.style.display = 'none';
+            signupForm.style.display = 'block';
+        });
+
+        document.getElementById('showLogin').addEventListener('click', (e) => {
+            e.preventDefault();
+            signupForm.style.display = 'none';
+            loginForm.style.display = 'block';
+        });
+
+        // Close modal
+        authClose.addEventListener('click', () => {
+            authModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                authModal.style.display = 'none';
+            }
+        });
+
+        // Login form submission
+        document.getElementById('loginFormElement').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+                console.log('User logged in:', userCredential.user);
+                authModal.style.display = 'none';
+                showUserInfo(userCredential.user);
+                showProtectedContent();
+            } catch (error) {
+                alert('Login failed: ' + error.message);
+            }
+        });
+
+        // Signup form submission
+        document.getElementById('signupFormElement').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            try {
+                const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+                console.log('User registered:', userCredential.user);
+                authModal.style.display = 'none';
+                showUserInfo(userCredential.user);
+                showProtectedContent();
+            } catch (error) {
+                alert('Registration failed: ' + error.message);
+            }
+        });
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            try {
+                await firebase.auth().signOut();
+                console.log('User logged out');
+                hideUserInfo();
+                hideProtectedContent();
+                showAuthModal();
+            } catch (error) {
+                alert('Logout failed: ' + error.message);
+            }
+        });
+
+        // Show user info
+        function showUserInfo(user) {
+            currentUser = user;
+            document.getElementById('userEmail').textContent = user.email;
+            userInfo.style.display = 'block';
+            hideLoginButton();
+        }
+
+        // Hide user info
+        function hideUserInfo() {
+            currentUser = null;
+            userInfo.style.display = 'none';
+        }
+
+        // Show protected content
+        function showProtectedContent() {
+            if (protectedContent) {
+                protectedContent.style.display = 'block';
+                console.log('Protected content shown');
+            } else {
+                console.error('Protected content element not found');
+            }
+        }
+
+        // Hide protected content
+        function hideProtectedContent() {
+            if (protectedContent) {
+                protectedContent.style.display = 'none';
+                console.log('Protected content hidden');
+            } else {
+                console.error('Protected content element not found');
+            }
+        }
+
+        // Show authentication modal
+        function showAuthModal() {
+            if (authModal) {
+                authModal.style.display = 'block';
+                console.log('Auth modal shown');
+            } else {
+                console.error('Auth modal element not found');
+            }
+        }
+
+        // Show login button in navigation
+        function showLoginButton() {
+            const nav = document.querySelector('.nav-container');
+            let loginBtn = document.getElementById('navLoginBtn');
+            if (!loginBtn) {
+                loginBtn = document.createElement('button');
+                loginBtn.id = 'navLoginBtn';
+                loginBtn.textContent = 'Staff Login';
+                loginBtn.className = 'nav-login-btn';
+                loginBtn.addEventListener('click', () => {
+                    authModal.style.display = 'block';
+                });
+                nav.appendChild(loginBtn);
+            }
+            loginBtn.style.display = 'block';
+        }
+
+        // Hide login button
+        function hideLoginButton() {
+            const loginBtn = document.getElementById('navLoginBtn');
+            if (loginBtn) {
+                loginBtn.style.display = 'none';
+            }
+        }
+
+        // Auth state observer
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                showUserInfo(user);
+                showProtectedContent();
+            } else {
+                hideUserInfo();
+                hideProtectedContent();
+                showAuthModal();
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Firebase initialized:', firebase.apps.length > 0);
+            
+            // Check if user is already authenticated
+            firebase.auth().onAuthStateChanged((user) => {
+                console.log('Auth state changed:', user ? 'User logged in' : 'User not logged in');
+                if (!user) {
+                    showAuthModal();
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* Authentication Modal Styles */
+        .auth-modal {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .auth-modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .auth-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+        }
+
+        .auth-close:hover {
+            color: #000;
+        }
+
+        .auth-form h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .auth-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin: 0;
+        }
+
+        .auth-switch a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+        /* User Info Styles */
+        .user-info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        .logout-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 12px;
+        }
+
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Navigation Login Button */
+        .nav-login-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: auto;
+        }
+
+        .nav-login-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .auth-modal-content {
+                margin: 10% auto;
+                width: 95%;
+            }
+
+            .user-info {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 10px;
+                text-align: center;
+            }
+        }
+    </style>
 </body>
 </html>
