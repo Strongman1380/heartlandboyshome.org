@@ -23,8 +23,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Google reCAPTCHA v3 -->
-    <script src="https://www.google.com/recaptcha/api.js?render=6LfYourSiteKeyHere"></script>
+
     
     <style>
 
@@ -1173,14 +1172,7 @@
                             <label for="loginPassword">Password:</label>
                             <input type="password" id="loginPassword" required>
                         </div>
-                        <div class="form-group">
-                            <div id="loginRecaptcha" class="recaptcha-container"></div>
-                            <div class="recaptcha-info">
-                                This site is protected by reCAPTCHA and the Google 
-                                <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and 
-                                <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.
-                            </div>
-                        </div>
+
                         <button type="submit" class="auth-btn" id="loginSubmitBtn">Login</button>
                         <p class="auth-switch">Don't have an account? <a href="#" id="showSignup">Sign up</a></p>
                     </form>
@@ -1204,11 +1196,9 @@
                             <input type="password" id="confirmPassword" required minlength="6">
                         </div>
                         <div class="form-group">
-                            <div id="signupRecaptcha" class="recaptcha-container"></div>
-                            <div class="recaptcha-info">
-                                This site is protected by reCAPTCHA and the Google 
-                                <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and 
-                                <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.
+                            <div class="auth-info">
+                                <strong>Staff Access Only:</strong> Registration is limited to authorized staff email addresses. 
+                                Contact your administrator if you need access.
                             </div>
                         </div>
                         <button type="submit" class="auth-btn" id="signupSubmitBtn">Sign Up</button>
@@ -1230,6 +1220,35 @@
         // Authentication state management
         let currentUser = null;
 
+        // Authorized staff email whitelist
+        const authorizedEmails = [
+            // Staff emails from official list
+            'scottallen61717@yahoo.com',           // SCOTT M. ALLEN
+            'prestigepersonnl@aol.com',            // MARK A. BILLINGSLY
+            'lesliecraig97@gmail.com',             // LELSIE J. CRAIG
+            'kathy.coffman@yahoo.com',             // KATHLEEN E. COFFMAN
+            'hollydavenport6@gmail.com',           // HOLLY J. DAVENPORT
+            'mthak08@gmail.com',                   // MATTHEW R. FREY
+            'toniafrey@gmail.com',                 // TONIA S. FREY
+            'hss1380@proton.me',                   // BRANDON J. HINRICHS
+            'simoneyates4@gmail.com',              // SIMONE M. LEE
+            'smae_03@yahoo.com',                   // SCHANDRA M. PALING
+            'jonipayne73@yahoo.com',               // JONI J. PAYNE
+            'rschroetlin78@gmail.com',             // RYAN R. SCHROETLIN
+            'allenschumacher7@gmail.com',          // ALLEN R. SCHUMACHER
+            'rich.turner2014@gmail.com',           // RICHARD M. TURNER
+            'edyoung@cox.net',                     // EDWARD C. YOUNG
+            // Legacy emails (keeping for compatibility)
+            'bhinrichs1380@gmail.com',
+            'staff@heartlandboyshome.org',
+            'admin@heartlandboyshome.org'
+        ];
+
+        // Function to check if email is authorized
+        function isEmailAuthorized(email) {
+            return authorizedEmails.includes(email.toLowerCase());
+        }
+
         // DOM elements
         const authModal = document.getElementById('authModal');
         const loginForm = document.getElementById('loginForm');
@@ -1238,52 +1257,9 @@
         const protectedContent = document.getElementById('protectedContent');
         const authClose = document.querySelector('.auth-close');
 
-        // reCAPTCHA Configuration
-        const RECAPTCHA_SITE_KEY = '6LfYourSiteKeyHere'; // Replace with your actual site key
-        let loginRecaptchaWidget = null;
-        let signupRecaptchaWidget = null;
 
-        // reCAPTCHA Helper Functions
-        function initializeRecaptcha() {
-            if (typeof grecaptcha !== 'undefined') {
-                // Initialize login reCAPTCHA
-                if (document.getElementById('loginRecaptcha')) {
-                    loginRecaptchaWidget = grecaptcha.render('loginRecaptcha', {
-                        'sitekey': RECAPTCHA_SITE_KEY,
-                        'theme': 'light',
-                        'size': 'normal'
-                    });
-                }
 
-                // Initialize signup reCAPTCHA
-                if (document.getElementById('signupRecaptcha')) {
-                    signupRecaptchaWidget = grecaptcha.render('signupRecaptcha', {
-                        'sitekey': RECAPTCHA_SITE_KEY,
-                        'theme': 'light',
-                        'size': 'normal'
-                    });
-                }
-            }
-        }
 
-        function resetRecaptcha(widgetId) {
-            if (typeof grecaptcha !== 'undefined' && widgetId !== null) {
-                grecaptcha.reset(widgetId);
-            }
-        }
-
-        function getRecaptchaResponse(widgetId) {
-            if (typeof grecaptcha !== 'undefined' && widgetId !== null) {
-                return grecaptcha.getResponse(widgetId);
-            }
-            return '';
-        }
-
-        async function verifyRecaptcha(token) {
-            // In a real implementation, you would send this token to your backend
-            // for verification. For now, we'll just check if the token exists.
-            return token && token.length > 0;
-        }
 
         // Show/hide forms
         document.getElementById('showSignup').addEventListener('click', (e) => {
@@ -1316,31 +1292,14 @@
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
 
-            // Verify reCAPTCHA
-            const recaptchaResponse = getRecaptchaResponse(loginRecaptchaWidget);
-            if (!recaptchaResponse) {
-                alert('Please complete the reCAPTCHA verification.');
-                return;
-            }
-
-            // Verify reCAPTCHA token
-            const isRecaptchaValid = await verifyRecaptcha(recaptchaResponse);
-            if (!isRecaptchaValid) {
-                alert('reCAPTCHA verification failed. Please try again.');
-                resetRecaptcha(loginRecaptchaWidget);
-                return;
-            }
-
             try {
                 const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
                 console.log('User logged in:', userCredential.user);
                 authModal.style.display = 'none';
                 showUserInfo(userCredential.user);
                 showProtectedContent();
-                resetRecaptcha(loginRecaptchaWidget);
             } catch (error) {
                 alert('Login failed: ' + error.message);
-                resetRecaptcha(loginRecaptchaWidget);
             }
         });
 
@@ -1356,18 +1315,9 @@
                 return;
             }
 
-            // Verify reCAPTCHA
-            const recaptchaResponse = getRecaptchaResponse(signupRecaptchaWidget);
-            if (!recaptchaResponse) {
-                alert('Please complete the reCAPTCHA verification.');
-                return;
-            }
-
-            // Verify reCAPTCHA token
-            const isRecaptchaValid = await verifyRecaptcha(recaptchaResponse);
-            if (!isRecaptchaValid) {
-                alert('reCAPTCHA verification failed. Please try again.');
-                resetRecaptcha(signupRecaptchaWidget);
+            // Check if email is authorized
+            if (!isEmailAuthorized(email)) {
+                alert('Access denied. This email address is not authorized for staff access. Please contact an administrator.');
                 return;
             }
 
@@ -1377,10 +1327,8 @@
                 authModal.style.display = 'none';
                 showUserInfo(userCredential.user);
                 showProtectedContent();
-                resetRecaptcha(signupRecaptchaWidget);
             } catch (error) {
                 alert('Registration failed: ' + error.message);
-                resetRecaptcha(signupRecaptchaWidget);
             }
         });
 
@@ -1393,9 +1341,27 @@
                 hideProtectedContent();
                 showAuthModal();
             } catch (error) {
+                console.error('Logout error:', error);
                 alert('Logout failed: ' + error.message);
             }
         });
+
+        // Add a manual test function for debugging
+        window.testLogin = function() {
+            console.log('Testing login modal...');
+            hideUserInfo();
+            hideProtectedContent();
+            showAuthModal();
+        };
+
+        // Add a function to force logout for testing
+        window.forceLogout = function() {
+            firebase.auth().signOut().then(() => {
+                console.log('Force logout successful');
+            }).catch((error) => {
+                console.error('Force logout error:', error);
+            });
+        };
 
         // Show user info
         function showUserInfo(user) {
@@ -1436,6 +1402,13 @@
             if (authModal) {
                 authModal.style.display = 'block';
                 console.log('Auth modal shown');
+                
+                // Try to initialize reCAPTCHA when modal is shown
+                setTimeout(() => {
+                    if (!loginRecaptchaWidget || !signupRecaptchaWidget) {
+                        initializeRecaptcha();
+                    }
+                }, 100);
             } else {
                 console.error('Auth modal element not found');
             }
@@ -1468,10 +1441,13 @@
 
         // Auth state observer
         firebase.auth().onAuthStateChanged((user) => {
+            console.log('Auth state observer triggered:', user ? `User: ${user.email}` : 'No user');
             if (user) {
+                console.log('Showing user info and protected content');
                 showUserInfo(user);
                 showProtectedContent();
             } else {
+                console.log('No user - showing auth modal');
                 hideUserInfo();
                 hideProtectedContent();
                 showAuthModal();
@@ -1481,19 +1457,6 @@
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
             console.log('Firebase initialized:', firebase.apps.length > 0);
-            
-            // Initialize reCAPTCHA when the page loads
-            setTimeout(() => {
-                initializeRecaptcha();
-            }, 1000); // Small delay to ensure reCAPTCHA script is loaded
-            
-            // Check if user is already authenticated
-            firebase.auth().onAuthStateChanged((user) => {
-                console.log('Auth state changed:', user ? 'User logged in' : 'User not logged in');
-                if (!user) {
-                    showAuthModal();
-                }
-            });
         });
     </script>
 
@@ -1590,6 +1553,16 @@
             text-decoration: underline;
         }
 
+        .auth-info {
+            background-color: #e8f4f8;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 14px;
+            color: #2c3e50;
+            text-align: center;
+        }
+
         /* User Info Styles */
         .user-info {
             position: fixed;
@@ -1633,35 +1606,7 @@
             background-color: #2980b9;
         }
 
-        /* reCAPTCHA Styling */
-        .recaptcha-container {
-            margin: 15px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
 
-        .recaptcha-container .g-recaptcha {
-            transform: scale(0.9);
-            transform-origin: center;
-        }
-
-        .recaptcha-info {
-            font-size: 0.85rem;
-            color: var(--text-gray);
-            text-align: center;
-            margin-top: 10px;
-            line-height: 1.4;
-        }
-
-        .recaptcha-info a {
-            color: var(--primary-red);
-            text-decoration: none;
-        }
-
-        .recaptcha-info a:hover {
-            text-decoration: underline;
-        }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
@@ -1678,28 +1623,10 @@
                 text-align: center;
             }
 
-            /* Mobile reCAPTCHA adjustments */
-            .recaptcha-container .g-recaptcha {
-                transform: scale(0.8);
-                transform-origin: center;
-            }
 
-            .recaptcha-info {
-                font-size: 0.75rem;
-                padding: 0 10px;
-            }
         }
 
         @media (max-width: 480px) {
-            .recaptcha-container .g-recaptcha {
-                transform: scale(0.7);
-                transform-origin: center;
-            }
-
-            .recaptcha-info {
-                font-size: 0.7rem;
-                padding: 0 5px;
-            }
         }
     </style>
 </body>

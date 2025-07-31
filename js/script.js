@@ -375,7 +375,69 @@ function initializeBehavioralGoals() {
 // Initialize behavioral goals when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeBehavioralGoals();
+    initializeTestimonialsCarousel();
 });
+
+// Testimonials Carousel Functionality
+let currentSlideIndex = 0;
+let slides, dots;
+
+function initializeTestimonialsCarousel() {
+    slides = document.querySelectorAll('.testimonial-slide');
+    dots = document.querySelectorAll('.dot');
+    
+    // Only initialize if elements exist
+    if (slides.length > 0 && dots.length > 0) {
+        // Auto-advance carousel every 8 seconds
+        setInterval(function() {
+            changeSlide(1);
+        }, 8000);
+    }
+}
+
+function showSlide(index) {
+    if (!slides || !dots) return;
+    
+    // Hide all slides
+    slides.forEach(slide => {
+        slide.classList.remove('active');
+    });
+    
+    // Remove active class from all dots
+    dots.forEach(dot => {
+        dot.classList.remove('active');
+    });
+    
+    // Show current slide and activate corresponding dot
+    if (slides[index]) {
+        slides[index].classList.add('active');
+    }
+    if (dots[index]) {
+        dots[index].classList.add('active');
+    }
+}
+
+function changeSlide(direction) {
+    if (!slides || slides.length === 0) return;
+    
+    currentSlideIndex += direction;
+    
+    // Loop back to beginning or end
+    if (currentSlideIndex >= slides.length) {
+        currentSlideIndex = 0;
+    } else if (currentSlideIndex < 0) {
+        currentSlideIndex = slides.length - 1;
+    }
+    
+    showSlide(currentSlideIndex);
+}
+
+function currentSlide(index) {
+    if (!slides || slides.length === 0) return;
+    
+    currentSlideIndex = index - 1; // Convert to 0-based index
+    showSlide(currentSlideIndex);
+}
 
 // Hamburger animation
 document.addEventListener('DOMContentLoaded', function() {
