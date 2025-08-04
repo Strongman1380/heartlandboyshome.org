@@ -1,0 +1,21 @@
+{
+  "name": "heartland-boys-home",
+  "version": "1.0.0",
+  "description": "Heartland Boys Home - Static Website",
+  "main": "index.html",
+  "scripts": {
+    "start": "echo 'This is a static website. Open index.html in your browser.'",
+    "build": "echo 'No build process needed for static site.'"
+  },
+  "keywords": [
+    "static",
+    "html",
+    "website",
+    "heartland-boys-home"
+  ],
+  "author": "Heartland Boys Home",
+  "license": "ISC",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

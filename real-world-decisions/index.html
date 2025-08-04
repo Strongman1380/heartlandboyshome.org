@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real World Decisions - Interactive Game</title>
+    <meta name="description" content="Interactive decision-making game for group home settings with multiple teams competing">
+    <meta name="keywords" content="decision making, social skills, group home, interactive game, education">
+    <meta name="author" content="Heartland Boys Home">
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Real World Decisions">
+    <link rel="apple-touch-icon" href="icons/icon-152x152.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="js/data.js" as="script">
+    <link rel="preload" href="js/game.js" as="script">
+    <link rel="preload" href="js/ui.js" as="script">
+    <link rel="preload" href="js/app.js" as="script">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-brain"></i>
+                <h1>Real World Decisions</h1>
+            </div>
+            <div class="loading-text">Loading game...</div>
+        </div>
+    </div>
+
+    <!-- Main Application Container -->
+    <div id="app" class="app-container">
+        <!-- Main Menu Screen -->
+        <div id="main-menu" class="screen active">
+            <div class="menu-header">
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    <h1>Real World Decisions</h1>
+                    <p>Interactive Decision-Making Game</p>
+                </div>
+            </div>
+            
+            <div class="menu-content">
+                <div class="menu-buttons">
+                    <button class="menu-btn primary" onclick="showScreen('team-setup')">
+                        <i class="fas fa-users"></i>
+                        <span>Start New Game</span>
+                    </button>
+                    <button class="menu-btn secondary" onclick="showScreen('staff-login')">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Staff Dashboard</span>
+                    </button>
+                    <button class="menu-btn secondary" onclick="showScreen('game-modes')">
+                        <i class="fas fa-gamepad"></i>
+                        <span>Game Modes</span>
+                    </button>
+                    <button class="menu-btn secondary" onclick="showScreen('settings')">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Setup Screen -->
+        <div id="team-setup" class="screen">
+            <div class="screen-header">
+                <button class="back-btn" onclick="showScreen('main-menu')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Team Setup</h2>
+                <div class="header-actions">
+                    <button class="btn primary" onclick="startGame()" id="start-game-btn" disabled>
+                        Start Game
+                    </button>
+                </div>
+            </div>
+
+            <div class="team-setup-content">
+                <div class="team-count-selector">
+                    <h3>Number of Teams</h3>
+                    <div class="count-buttons">
+                        <button class="count-btn" onclick="setTeamCount(1)">1</button>
+                        <button class="count-btn active" onclick="setTeamCount(2)">2</button>
+                        <button class="count-btn" onclick="setTeamCount(3)">3</button>
+                        <button class="count-btn" onclick="setTeamCount(4)">4</button>
+                    </div>
+                </div>
+
+                <div class="teams-container" id="teams-container">
+                    <!-- Teams will be dynamically generated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Mode Selection Screen -->
+        <div id="game-modes" class="screen">
+            <div class="screen-header">
+                <button class="back-btn" onclick="showScreen('main-menu')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Game Modes</h2>
+            </div>
+
+            <div class="game-modes-content">
+                <div class="mode-cards">
+                    <div class="mode-card" onclick="selectGameMode('standard')">
+                        <div class="mode-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>Standard Challenge</h3>
+                        <p>Teams take turns selecting scenarios and completing worksheets</p>
+                        <div class="mode-features">
+                            <span><i class="fas fa-clock"></i> 30-45 minutes</span>
+                            <span><i class="fas fa-users"></i> 1-4 teams</span>
+                        </div>
+                    </div>
+
+                    <div class="mode-card" onclick="selectGameMode('tournament')">
+                        <div class="mode-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <h3>Tournament Mode</h3>
+                        <p>Bracket-style competition with progressive difficulty</p>
+                        <div class="mode-features">
+                            <span><i class="fas fa-clock"></i> 45-60 minutes</span>
+                            <span><i class="fas fa-users"></i> 2-4 teams</span>
+                        </div>
+                    </div>
+
+                    <div class="mode-card" onclick="selectGameMode('skill-building')">
+                        <div class="mode-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Skill Building</h3>
+                        <p>Focus on specific social skills and competencies</p>
+                        <div class="mode-features">
+                            <span><i class="fas fa-clock"></i> 20-30 minutes</span>
+                            <span><i class="fas fa-target"></i> Targeted practice</span>
+                        </div>
+                    </div>
+
+                    <div class="mode-card" onclick="selectGameMode('quick-decision')">
+                        <div class="mode-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Quick Decision</h3>
+                        <p>Timed responses focusing on immediate judgment</p>
+                        <div class="mode-features">
+                            <span><i class="fas fa-clock"></i> 15-20 minutes</span>
+                            <span><i class="fas fa-stopwatch"></i> 30-60 sec per turn</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <div class="game-info">
+                    <h2 id="current-team">Team 1's Turn</h2>
+                    <div class="round-info">Round <span id="current-round">1</span></div>
+                </div>
+                <div class="game-controls">
+                    <button class="btn secondary" onclick="pauseGame()">
+                        <i class="fas fa-pause"></i> Pause
+                    </button>
+                    <button class="btn danger" onclick="endGame()">
+                        <i class="fas fa-stop"></i> End Game
+                    </button>
+                </div>
+            </div>
+
+            <div class="game-content">
+                <div class="left-panel">
+                    <div class="team-scores">
+                        <h3>Scores</h3>
+                        <div id="team-scores-list">
+                            <!-- Team scores will be populated here -->
+                        </div>
+                    </div>
+
+                    <div class="category-selector">
+                        <h3>Select Category</h3>
+                        <div class="category-buttons" id="category-buttons">
+                            <!-- Category buttons will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-panel">
+                    <div class="scenario-display" id="scenario-display">
+                        <div class="scenario-placeholder">
+                            <i class="fas fa-cards-blank"></i>
+                            <p>Select a category to draw a scenario card</p>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn primary large" onclick="drawScenario()" id="draw-btn" disabled>
+                            <i class="fas fa-hand-paper"></i>
+                            Draw Scenario
+                        </button>
+                        <button class="btn secondary large" onclick="showWorksheet()" id="worksheet-btn" disabled>
+                            <i class="fas fa-clipboard-list"></i>
+                            Open Worksheet
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Worksheet Screen -->
+        <div id="worksheet-screen" class="screen">
+            <div class="worksheet-header">
+                <button class="back-btn" onclick="showScreen('game-screen')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Decision Worksheet</h2>
+                <div class="worksheet-progress">
+                    <span id="worksheet-step">Step 1 of 6</span>
+                </div>
+            </div>
+
+            <div class="worksheet-content">
+                <div class="scenario-summary" id="worksheet-scenario">
+                    <!-- Current scenario will be displayed here -->
+                </div>
+
+                <div class="worksheet-form" id="worksheet-form">
+                    <!-- Worksheet steps will be populated here -->
+                </div>
+
+                <div class="worksheet-navigation">
+                    <button class="btn secondary" onclick="previousStep()" id="prev-step-btn" disabled>
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <button class="btn primary" onclick="nextStep()" id="next-step-btn">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button class="btn success" onclick="submitWorksheet()" id="submit-worksheet-btn" style="display: none;">
+                        <i class="fas fa-check"></i> Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Staff Evaluation Screen -->
+        <div id="evaluation-screen" class="screen">
+            <div class="evaluation-header">
+                <h2>Staff Evaluation</h2>
+                <div class="evaluation-team" id="evaluation-team">
+                    Evaluating Team 1
+                </div>
+            </div>
+
+            <div class="evaluation-content">
+                <div class="evaluation-left">
+                    <div class="scenario-review" id="evaluation-scenario">
+                        <!-- Scenario will be displayed here -->
+                    </div>
+                </div>
+
+                <div class="evaluation-right">
+                    <div class="response-review" id="evaluation-response">
+                        <!-- Team responses will be displayed here -->
+                    </div>
+
+                    <div class="token-assignment">
+                        <h3>Assign Tokens</h3>
+                        <div class="token-buttons">
+                            <button class="token-btn green" onclick="assignToken('green')">
+                                <i class="fas fa-circle"></i>
+                                Green (5 pts)
+                            </button>
+                            <button class="token-btn yellow" onclick="assignToken('yellow')">
+                                <i class="fas fa-circle"></i>
+                                Yellow (3 pts)
+                            </button>
+                            <button class="token-btn red" onclick="assignToken('red')">
+                                <i class="fas fa-circle"></i>
+                                Red (1 pt)
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="staff-comments">
+                        <h3>Comments</h3>
+                        <textarea id="staff-comments" placeholder="Optional feedback for the team..."></textarea>
+                    </div>
+
+                    <div class="evaluation-actions">
+                        <button class="btn primary large" onclick="submitEvaluation()">
+                            <i class="fas fa-check"></i>
+                            Submit Evaluation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scoreboard Screen -->
+        <div id="scoreboard-screen" class="screen">
+            <div class="scoreboard-header">
+                <h2>Game Results</h2>
+                <div class="game-summary" id="game-summary">
+                    <!-- Game summary will be populated here -->
+                </div>
+            </div>
+
+            <div class="scoreboard-content">
+                <div class="final-scores" id="final-scores">
+                    <!-- Final scores will be populated here -->
+                </div>
+
+                <div class="scoreboard-actions">
+                    <button class="btn primary" onclick="showScreen('main-menu')">
+                        <i class="fas fa-home"></i>
+                        Main Menu
+                    </button>
+                    <button class="btn secondary" onclick="startNewGame()">
+                        <i class="fas fa-redo"></i>
+                        New Game
+                    </button>
+                    <button class="btn secondary" onclick="exportResults()">
+                        <i class="fas fa-download"></i>
+                        Export Results
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Staff Login Screen -->
+        <div id="staff-login" class="screen">
+            <div class="login-container">
+                <div class="login-header">
+                    <button class="back-btn" onclick="showScreen('main-menu')">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h2>Staff Login</h2>
+                </div>
+
+                <div class="login-form">
+                    <div class="form-group">
+                        <label for="staff-username">Username</label>
+                        <input type="text" id="staff-username" placeholder="Enter staff username">
+                    </div>
+                    <div class="form-group">
+                        <label for="staff-password">Password</label>
+                        <input type="password" id="staff-password" placeholder="Enter password">
+                    </div>
+                    <button class="btn primary large" onclick="staffLogin()">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Screen -->
+        <div id="settings" class="screen">
+            <div class="screen-header">
+                <button class="back-btn" onclick="showScreen('main-menu')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Settings</h2>
+            </div>
+
+            <div class="settings-content">
+                <div class="settings-section">
+                    <h3>Game Settings</h3>
+                    <div class="setting-item">
+                        <label>Default Game Mode</label>
+                        <select id="default-game-mode">
+                            <option value="standard">Standard Challenge</option>
+                            <option value="tournament">Tournament Mode</option>
+                            <option value="skill-building">Skill Building</option>
+                            <option value="quick-decision">Quick Decision</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label>Timer Duration (seconds)</label>
+                        <input type="number" id="timer-duration" value="60" min="30" max="300">
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Display Settings</h3>
+                    <div class="setting-item">
+                        <label>Text Size</label>
+                        <select id="text-size">
+                            <option value="small">Small</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="large">Large</option>
+                            <option value="extra-large">Extra Large</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label>High Contrast Mode</label>
+                        <input type="checkbox" id="high-contrast">
+                    </div>
+                </div>
+
+                <div class="settings-actions">
+                    <button class="btn primary" onclick="saveSettings()">
+                        <i class="fas fa-save"></i>
+                        Save Settings
+                    </button>
+                    <button class="btn secondary" onclick="resetSettings()">
+                        <i class="fas fa-undo"></i>
+                        Reset to Default
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

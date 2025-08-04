@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real World Decisions - Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            background: #f5f5f5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .success { background: #d4edda; border-left: 4px solid #28a745; }
+        .error { background: #f8d7da; border-left: 4px solid #dc3545; }
+        .warning { background: #fff3cd; border-left: 4px solid #ffc107; }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+        #test-results { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Real World Decisions - System Test</h1>
+    
+    <div class="test-section">
+        <h2>Application Status</h2>
+        <p>This page tests the core functionality of the Real World Decisions application.</p>
+        <button onclick="runTests()">Run All Tests</button>
+        <button onclick="window.open('index.html', '_blank')">Open Main Application</button>
+    </div>
+
+    <div id="test-results"></div>
+
+    <script src="js/data.js"></script>
+    <script>
+        function runTests() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<h2>Test Results</h2>';
+            
+            const tests = [
+                testDataStructure,
+                testScenarioValidation,
+                testCategoryIntegrity,
+                testWorksheetSteps,
+                testGameModes,
+                testUtilityFunctions
+            ];
+            
+            let passed = 0;
+            let failed = 0;
+            
+            tests.forEach(test => {
+                try {
+                    const result = test();
+                    if (result.success) {
+                        passed++;
+                        results.innerHTML += `<div class="test-section success">
+                            <h3>✅ ${result.name}</h3>
+                            <p>${result.message}</p>
+                        </div>`;
+                    } else {
+                        failed++;
+                        results.innerHTML += `<div class="test-section error">
+                            <h3>❌ ${result.name}</h3>
+                            <p>${result.message}</p>
+                        </div>`;
+                    }
+                } catch (error) {
+                    failed++;
+                    results.innerHTML += `<div class="test-section error">
+                        <h3>❌ Test Error</h3>
+                        <p>Error running test: ${error.message}</p>
+                    </div>`;
+                }
+            });
+            
+            results.innerHTML += `<div class="test-section ${failed === 0 ? 'success' : 'warning'}">
+                <h3>Summary</h3>
+                <p><strong>Passed:</strong> ${passed} | <strong>Failed:</strong> ${failed}</p>
+                ${failed === 0 ? '<p>🎉 All tests passed! The application is ready to use.</p>' : '<p>⚠️ Some tests failed. Check the errors above.</p>'}
+            </div>`;
+        }
+        
+        function testDataStructure() {
+            if (!window.GAME_DATA) {
+                return { success: false, name: 'Data Structure', message: 'GAME_DATA not found' };
+            }
+            
+            const required = ['categories', 'scenarios', 'worksheetSteps', 'pointValues', 'gameModes'];
+            const missing = required.filter(key => !GAME_DATA[key]);
+            
+            if (missing.length > 0) {
+                return { success: false, name: 'Data Structure', message: `Missing required data: ${missing.join(', ')}` };
+            }
+            
+            return { success: true, name: 'Data Structure', message: 'All required data structures present' };
+        }
+        
+        function testScenarioValidation() {
+            if (!window.DataUtils) {
+                return { success: false, name: 'Scenario Validation', message: 'DataUtils not found' };
+            }
+            
+            const errors = DataUtils.validateScenarioData();
+            
+            if (errors.length > 0) {
+                return { success: false, name: 'Scenario Validation', message: `Validation errors: ${errors.join(', ')}` };
+            }
+            
+            return { success: true, name: 'Scenario Validation', message: `${GAME_DATA.scenarios.length} scenarios validated successfully` };
+        }
+        
+        function testCategoryIntegrity() {
+            const categories = GAME_DATA.categories;
+            const scenarios = GAME_DATA.scenarios;
+            
+            if (categories.length === 0) {
+                return { success: false, name: 'Category Integrity', message: 'No categories found' };
+            }
+            
+            const categoryIds = categories.map(c => c.id);
+            const usedCategories = [...new Set(scenarios.map(s => s.category))];
+            const unusedCategories = categoryIds.filter(id => !usedCategories.includes(id));
+            
+            if (unusedCategories.length > 0) {
+                return { success: false, name: 'Category Integrity', message: `Unused categories: ${unusedCategories.join(', ')}` };
+            }
+            
+            return { success: true, name: 'Category Integrity', message: `${categories.length} categories, all have scenarios` };
+        }
+        
+        function testWorksheetSteps() {
+            const steps = GAME_DATA.worksheetSteps;
+            
+            if (!steps || steps.length === 0) {
+                return { success: false, name: 'Worksheet Steps', message: 'No worksheet steps found' };
+            }
+            
+            const requiredFields = ['id', 'title', 'description', 'prompt'];
+            const invalidSteps = steps.filter(step => 
+                !requiredFields.every(field => step[field])
+            );
+            
+            if (invalidSteps.length > 0) {
+                return { success: false, name: 'Worksheet Steps', message: `${invalidSteps.length} invalid steps found` };
+            }
+            
+            return { success: true, name: 'Worksheet Steps', message: `${steps.length} worksheet steps validated` };
+        }
+        
+        function testGameModes() {
+            const modes = GAME_DATA.gameModes;
+            
+            if (!modes || Object.keys(modes).length === 0) {
+                return { success: false, name: 'Game Modes', message: 'No game modes found' };
+            }
+            
+            const requiredModes = ['standard', 'tournament', 'skillBuilding', 'quickDecision'];
+            const missingModes = requiredModes.filter(mode => !modes[mode]);
+            
+            if (missingModes.length > 0) {
+                return { success: false, name: 'Game Modes', message: `Missing modes: ${missingModes.join(', ')}` };
+            }
+            
+            return { success: true, name: 'Game Modes', message: `${Object.keys(modes).length} game modes available` };
+        }
+        
+        function testUtilityFunctions() {
+            if (!window.DataUtils) {
+                return { success: false, name: 'Utility Functions', message: 'DataUtils not available' };
+            }
+            
+            const functions = [
+                'getScenariosByCategory',
+                'getScenarioById',
+                'getCategoryById',
+                'getRandomScenario'
+            ];
+            
+            const missingFunctions = functions.filter(fn => typeof DataUtils[fn] !== 'function');
+            
+            if (missingFunctions.length > 0) {
+                return { success: false, name: 'Utility Functions', message: `Missing functions: ${missingFunctions.join(', ')}` };
+            }
+            
+            // Test a function
+            try {
+                const scenarios = DataUtils.getScenariosByCategory('everyday-choices');
+                if (!Array.isArray(scenarios)) {
+                    return { success: false, name: 'Utility Functions', message: 'getScenariosByCategory not returning array' };
+                }
+            } catch (error) {
+                return { success: false, name: 'Utility Functions', message: `Function test failed: ${error.message}` };
+            }
+            
+            return { success: true, name: 'Utility Functions', message: 'All utility functions working correctly' };
+        }
+        
+        // Auto-run tests on page load
+        window.addEventListener('load', function() {
+            setTimeout(runTests, 500);
+        });
+    </script>
+</body>
+</html>
