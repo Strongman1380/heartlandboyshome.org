@@ -1,40 +1,100 @@
-// Loading Screen Management
+// Enhanced Loading Screen Management with Modern Effects
 window.addEventListener('load', function() {
     const loadingScreen = document.getElementById('loading-screen');
     const loadingText = document.querySelector('.loading-text');
     
-    // Array of loading messages
+    // Array of loading messages with modern styling
     const loadingMessages = [
         'Empowering Youth...',
         'Restoring Hope...',
         'Building Futures...',
+        'Creating Opportunities...',
         'Welcome to Heartland Boys Home'
     ];
     
     let messageIndex = 0;
     
-    // Change loading text every 800ms
+    // Add modern loading animation
+    if (loadingText) {
+        loadingText.style.cssText = `
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            font-size: 1.2rem;
+            animation: pulse 2s ease-in-out infinite;
+        `;
+    }
+    
+    // Change loading text with smooth transitions
     const messageInterval = setInterval(() => {
         if (messageIndex < loadingMessages.length - 1) {
             messageIndex++;
-            loadingText.textContent = loadingMessages[messageIndex];
+            if (loadingText) {
+                loadingText.style.opacity = '0';
+                loadingText.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    loadingText.textContent = loadingMessages[messageIndex];
+                    loadingText.style.opacity = '1';
+                    loadingText.style.transform = 'translateY(0)';
+                }, 200);
+            }
         } else {
             clearInterval(messageInterval);
         }
-    }, 800);
+    }, 700);
     
-    // Hide loading screen after 3.5 seconds
+    // Hide loading screen with enhanced animation
     setTimeout(() => {
-        loadingScreen.classList.add('fade-out');
-        
-        // Remove from DOM after transition
-        setTimeout(() => {
-            if (loadingScreen.parentNode) {
-                loadingScreen.parentNode.removeChild(loadingScreen);
-            }
-        }, 1000);
-    }, 3500);
+        if (loadingScreen) {
+            loadingScreen.style.transform = 'scale(1.1)';
+            loadingScreen.style.opacity = '0';
+            loadingScreen.classList.add('fade-out');
+            
+            // Remove from DOM after transition
+            setTimeout(() => {
+                if (loadingScreen.parentNode) {
+                    loadingScreen.parentNode.removeChild(loadingScreen);
+                }
+                
+                // Trigger entrance animations for page elements
+                triggerPageEntranceAnimations();
+            }, 1000);
+        }
+    }, 3200);
 });
+
+// Modern page entrance animations
+function triggerPageEntranceAnimations() {
+    const heroTitle = document.querySelector('.hero-title');
+    const heroSubtitle = document.querySelector('.hero-subtitle');
+    const heroButtons = document.querySelector('.hero-buttons');
+    const heroImage = document.querySelector('.hero-image');
+    
+    if (heroTitle) {
+        heroTitle.style.animation = 'slideInFromLeft 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+    }
+    
+    if (heroSubtitle) {
+        setTimeout(() => {
+            heroSubtitle.style.animation = 'slideInFromLeft 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+        }, 200);
+    }
+    
+    if (heroButtons) {
+        setTimeout(() => {
+            heroButtons.style.animation = 'slideInFromLeft 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+        }, 400);
+    }
+    
+    if (heroImage) {
+        setTimeout(() => {
+            heroImage.style.animation = 'slideInFromRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+        }, 300);
+    }
+}
 
 // Mobile Navigation Toggle
 document.addEventListener('DOMContentLoaded', function() {
@@ -43,26 +103,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
 
     // Toggle mobile menu
-    hamburger.addEventListener('click', function() {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
 
     // Close mobile menu when clicking on a link
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
+    if (navLinks.length > 0 && hamburger && navMenu) {
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
         });
-    });
+    }
 
     // Close mobile menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-    });
+    if (hamburger && navMenu) {
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    }
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -81,72 +149,175 @@ document.addEventListener('DOMContentLoaded', function() {
     // Google Form is embedded via iframe - no custom form handling needed
     // The form submission is handled directly by Google Forms
 
-    // Enhanced Scroll Animations
+    // Enhanced Scroll Animations with Modern Effects
+    const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const scrollAnimationOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -100px 0px'
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     };
 
     const scrollObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate');
+                
+                // Add dynamic entrance animations
+                if (entry.target.classList.contains('content-card')) {
+                    entry.target.style.animation = 'slideInFromLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+                }
+                
+                if (entry.target.classList.contains('contact-item')) {
+                    entry.target.style.animation = 'slideInFromRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+                }
+
+                // location-card: no forced animation; remains visible by default
             }
         });
     }, scrollAnimationOptions);
 
     // Observe elements for scroll animations
-    const animateElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
-    animateElements.forEach((el, index) => {
-        // Add staggered animation delay
-        el.style.transitionDelay = `${index * 0.1}s`;
+    // 1) Elements with explicit animation classes: set initial hidden state
+    const animatedClassElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
+    animatedClassElements.forEach((el, index) => {
+        // Respect reduced motion: don't hide or animate
+        if (!reducedMotion) {
+            el.style.transitionDelay = `${index * 0.1}s`;
+        }
         scrollObserver.observe(el);
     });
 
-    // Parallax effects for mouse movement
-    document.addEventListener('mousemove', function(e) {
-        const parallaxElements = document.querySelectorAll('.parallax-element');
-        const mouseX = e.clientX / window.innerWidth;
-        const mouseY = e.clientY / window.innerHeight;
-
-        parallaxElements.forEach(element => {
-            const speed = element.dataset.speed || 0.5;
-            const x = (mouseX - 0.5) * 50 * speed;
-            const y = (mouseY - 0.5) * 50 * speed;
-            
-            element.style.transform = `translate(${x}px, ${y}px)`;
-        });
+    // 2) Content/location/contact cards: observe to apply a gentle entrance, but NEVER hide by default
+    const cardElements = document.querySelectorAll('.content-card, .contact-item, .location-card');
+    cardElements.forEach((el, index) => {
+        // Do not set opacity/transform defaults to avoid hidden content
+        if (!reducedMotion) {
+            el.style.transitionDelay = `${index * 0.05}s`;
+        }
+        scrollObserver.observe(el);
     });
 
-    // Scroll-based parallax for hero section
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.parallax-element');
+    // If reduced motion is preferred, ensure everything is visible
+    if (reducedMotion) {
+        document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
+            el.classList.add('animate');
+            el.style.opacity = '';
+            el.style.transform = '';
+        });
+    }
+
+    // Dynamic card hover effects
+    const cards = document.querySelectorAll('.content-card, .contact-item, .location-card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.animation = 'pulse 0.6s ease-in-out';
+        });
         
-        parallaxElements.forEach(element => {
-            const speed = element.dataset.speed || 0.5;
-            const yPos = -(scrolled * speed);
-            element.style.transform = `translateY(${yPos}px)`;
+        card.addEventListener('mouseleave', function() {
+            this.style.animation = '';
         });
     });
 
-    // Active navigation highlighting
+    // Parallax handling with combined mouse and scroll transforms
+    const parallaxElements = Array.from(document.querySelectorAll('.parallax-element'));
+    const pointerFine = window.matchMedia ? window.matchMedia('(pointer: fine)').matches : true;
+    const enableScrollParallax = !reducedMotion && parallaxElements.length > 0;
+    const enableMouseParallax = !reducedMotion && pointerFine && parallaxElements.length > 0;
+    const parallaxState = new Map();
+
+    parallaxElements.forEach(element => {
+        parallaxState.set(element, { mouseX: 0, mouseY: 0, scrollY: 0 });
+    });
+
+    let parallaxFrameRequested = false;
+    const scheduleParallaxUpdate = () => {
+        if (parallaxFrameRequested) return;
+        parallaxFrameRequested = true;
+        requestAnimationFrame(() => {
+            parallaxState.forEach((state, element) => {
+                element.style.transform = `translate3d(${state.mouseX}px, ${state.mouseY}px, 0) translateY(${state.scrollY}px)`;
+            });
+            parallaxFrameRequested = false;
+        });
+    };
+
+    if (enableMouseParallax) {
+        document.addEventListener('mousemove', event => {
+            const normalizedX = (event.clientX / window.innerWidth) - 0.5;
+            const normalizedY = (event.clientY / window.innerHeight) - 0.5;
+
+            parallaxElements.forEach(element => {
+                const speed = parseFloat(element.dataset.speed) || 0.5;
+                const state = parallaxState.get(element);
+                if (!state) return;
+                state.mouseX = normalizedX * 50 * speed;
+                state.mouseY = normalizedY * 50 * speed;
+            });
+
+            scheduleParallaxUpdate();
+        });
+    }
+
+    if (enableScrollParallax) {
+        const updateScrollOffsets = () => {
+            const scrolled = window.pageYOffset;
+            parallaxElements.forEach(element => {
+                const speed = parseFloat(element.dataset.speed) || 0.5;
+                const state = parallaxState.get(element);
+                if (!state) return;
+                state.scrollY = -(scrolled * speed);
+            });
+            scheduleParallaxUpdate();
+        };
+
+        window.addEventListener('scroll', updateScrollOffsets, { passive: true });
+        updateScrollOffsets();
+    } else if (parallaxElements.length > 0) {
+        // Clear transforms entirely when motion should be reduced
+        parallaxElements.forEach(element => {
+            element.style.transform = '';
+        });
+    }
+
+    // Enhanced navigation with modern effects
     const sections = document.querySelectorAll('section[id]');
     const navItems = document.querySelectorAll('.nav-link');
+    const navbar = document.querySelector('.navbar');
+    const hasAnchorNav = Array.from(navItems).some(item => {
+        const href = item.getAttribute('href') || '';
+        return href.includes('#');
+    });
 
     function highlightNavigation() {
         let current = '';
+        const scrollY = window.pageYOffset;
+        
+        // Add navbar background blur effect on scroll
+        if (navbar) {
+            if (scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.9)';
+                navbar.style.backdropFilter = 'blur(20px)';
+                navbar.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.backdropFilter = 'blur(20px)';
+                navbar.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)';
+            }
+        }
+        
+        if (!hasAnchorNav || sections.length === 0) {
+            return;
+        }
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.pageYOffset >= sectionTop - 200) {
+            if (scrollY >= sectionTop - 200) {
                 current = section.getAttribute('id');
             }
         });
 
         navItems.forEach(item => {
             item.classList.remove('active');
-            if (item.getAttribute('href').includes(current)) {
+            if (current && item.getAttribute('href').includes(current)) {
                 item.classList.add('active');
             }
         });
@@ -172,6 +343,9 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
         });
     });
+
+    // Ensure correct nav highlight on initial load
+    highlightNavigation();
 });
 
 // Utility functions
@@ -319,35 +493,10 @@ function showNotification(message, type = 'info') {
 
 function createBackToTopButton() {
     const button = document.createElement('button');
-    button.innerHTML = '<i class="fas fa-arrow-up"></i>';
     button.className = 'back-to-top';
-    button.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: var(--primary-red);
-        color: white;
-        border: none;
-        cursor: pointer;
-        display: none;
-        z-index: 1000;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    `;
-    
-    button.addEventListener('mouseenter', function() {
-        this.style.background = 'var(--secondary-red)';
-        this.style.transform = 'translateY(-2px)';
-    });
-    
-    button.addEventListener('mouseleave', function() {
-        this.style.background = 'var(--primary-red)';
-        this.style.transform = 'translateY(0)';
-    });
-    
+    button.type = 'button';
+    button.setAttribute('aria-label', 'Back to top');
+    button.innerHTML = '<i class="fas fa-arrow-up"></i>';
     return button;
 }
 
