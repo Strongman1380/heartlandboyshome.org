@@ -5,12 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Newsletter Signup - Heartland Boys Home</title>
     <meta name="description" content="Stay updated with Heartland Boys Home news, success stories, and events. Subscribe to our newsletter to learn about our impact on at-risk youth.">
+    <meta property="og:title" content="Newsletter Signup - Heartland Boys Home">
+    <meta property="og:description" content="Stay updated with Heartland Boys Home news, success stories, and events. Subscribe to our newsletter to learn about our impact on at-risk youth.">
+    <meta property="og:url" content="https://heartlandboyshome.org/newsletter">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://heartlandboyshome.org/images/logo.png">
+    <meta property="og:site_name" content="Heartland Boys Home">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Newsletter Signup - Heartland Boys Home">
+    <meta name="twitter:description" content="Stay updated with Heartland Boys Home news, success stories, and events. Subscribe to our newsletter to learn about our impact on at-risk youth.">
+    <meta name="twitter:image" content="https://heartlandboyshome.org/images/logo.png">
     <link rel="canonical" href="https://heartlandboyshome.org/newsletter">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-nav">Skip to main content</a>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -23,8 +36,6 @@
                 <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="programs.html" class="nav-link">Programs</a></li>
                 <li class="nav-item"><a href="admissions.html" class="nav-link">Admissions</a></li>
-                <li class="nav-item"><a href="staff.html" class="nav-link">Staff</a></li>
-                <li class="nav-item"><a href="training.html" class="nav-link">Training</a></li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
             <div class="nav-social">
@@ -41,7 +52,7 @@
     </nav>
 
     <!-- Page Header -->
-    <section class="page-header">
+    <section class="page-header" id="main-content">
         <div class="container">
             <h1>Stay Connected</h1>
             <p>Subscribe to our newsletter to receive updates about our programs, success stories, and ways to support our mission.</p>
@@ -133,7 +144,7 @@
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="programs.html">Programs</a></li>
                         <li><a href="admissions.html">Admissions</a></li>
-                        <li><a href="about.html">Our Staff</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -149,54 +160,11 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Heartland Boys Home. All rights reserved.</p>
+                <p>&copy; 2025 Heartland Boys Home. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="js/script.js"></script>
-    <script>
-        // Handle newsletter form submission
-        document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const submitButton = this.querySelector('button[type="submit"]');
-            const successMessage = document.getElementById('success-message');
-            const errorMessage = document.getElementById('error-message');
-            
-            // Hide previous messages
-            successMessage.style.display = 'none';
-            errorMessage.style.display = 'none';
-            
-            // Show loading state
-            submitButton.textContent = 'Subscribing...';
-            submitButton.disabled = true;
-            
-            try {
-                const response = await fetch('/api/newsletter', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    successMessage.style.display = 'block';
-                    this.reset();
-                    successMessage.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    throw new Error(result.message || 'Subscription failed');
-                }
-            } catch (error) {
-                console.error('Newsletter subscription error:', error);
-                errorMessage.style.display = 'block';
-                errorMessage.scrollIntoView({ behavior: 'smooth' });
-            } finally {
-                submitButton.textContent = 'Subscribe to Newsletter';
-                submitButton.disabled = false;
-            }
-        });
-    </script>
 </body>
 </html>

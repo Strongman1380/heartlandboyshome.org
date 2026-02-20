@@ -21,10 +21,6 @@
       "destination": "/admissions.html"
     },
     {
-      "source": "/staff",
-      "destination": "/staff.html"
-    },
-    {
       "source": "/contact",
       "destination": "/contact.html"
     },
@@ -43,10 +39,6 @@
     {
       "source": "/newsletter",
       "destination": "/newsletter.html"
-    },
-    {
-      "source": "/training",
-      "destination": "/training.html"
     },
     {
       "source": "/404",

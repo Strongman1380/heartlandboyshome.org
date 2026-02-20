@@ -63,7 +63,7 @@ window.addEventListener('load', function() {
                 triggerPageEntranceAnimations();
             }, 1000);
         }
-    }, 3200);
+    }, 1500);
 });
 
 // Modern page entrance animations
@@ -541,6 +541,36 @@ function initializeTestimonialsCarousel() {
         setInterval(function() {
             changeSlide(1);
         }, 8000);
+
+        // Add keyboard navigation for carousel
+        const carouselNav = document.querySelector('.carousel-nav');
+        if (carouselNav) {
+            document.addEventListener('keydown', function(e) {
+                // Only respond when carousel is in viewport
+                const rect = carouselNav.getBoundingClientRect();
+                const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+                if (!inViewport) return;
+
+                if (e.key === 'ArrowLeft') {
+                    changeSlide(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changeSlide(1);
+                }
+            });
+        }
+
+        // Make dots keyboard accessible
+        dots.forEach((dot, index) => {
+            dot.setAttribute('role', 'button');
+            dot.setAttribute('tabindex', '0');
+            dot.setAttribute('aria-label', 'Go to testimonial ' + (index + 1));
+            dot.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    currentSlide(index + 1);
+                }
+            });
+        });
     }
 }
 
@@ -643,6 +673,28 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.insertBefore(devBanner, document.body.firstChild);
         }
     }
+});
+
+// Email obfuscation - protect email addresses from spam bots
+document.addEventListener('DOMContentLoaded', function() {
+    const emailUser = 'rschroetlin78';
+    const emailDomain = 'gmail.com';
+    const email = emailUser + '@' + emailDomain;
+
+    // Replace all visible email text nodes
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    while (walker.nextNode()) {
+        if (walker.currentNode.nodeValue.includes('rschroetlin78@gmail.com')) {
+            walker.currentNode.nodeValue = walker.currentNode.nodeValue.replace('rschroetlin78@gmail.com', email);
+        }
+    }
+
+    // Add mailto links where email is just plain text
+    document.querySelectorAll('.contact-item p, .footer-section p').forEach(function(el) {
+        if (el.innerHTML.includes(email) && !el.querySelector('a[href^="mailto"]')) {
+            el.innerHTML = el.innerHTML.replace(email, '<a href="mailto:' + email + '">' + email + '</a>');
+        }
+    });
 });
 
 // Add CSS for hamburger animation

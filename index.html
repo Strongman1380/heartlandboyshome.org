@@ -5,12 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heartland Boys Home - Empowering Youth. Restoring Hope. Building Futures.</title>
     <meta name="description" content="Heartland Boys Home provides comprehensive residential treatment and education for at-risk youth. Empowering young men to build brighter futures through therapeutic care and academic excellence.">
+    <meta property="og:title" content="Heartland Boys Home - Empowering Youth. Restoring Hope. Building Futures.">
+    <meta property="og:description" content="Heartland Boys Home provides comprehensive residential treatment and education for at-risk youth. Empowering young men to build brighter futures through therapeutic care and academic excellence.">
+    <meta property="og:url" content="https://heartlandboyshome.org/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://heartlandboyshome.org/images/logo.png">
+    <meta property="og:site_name" content="Heartland Boys Home">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Heartland Boys Home - Empowering Youth. Restoring Hope. Building Futures.">
+    <meta name="twitter:description" content="Heartland Boys Home provides comprehensive residential treatment and education for at-risk youth. Empowering young men to build brighter futures through therapeutic care and academic excellence.">
+    <meta name="twitter:image" content="https://heartlandboyshome.org/images/logo.png">
     <link rel="canonical" href="https://heartlandboyshome.org/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Heartland Boys Home",
+        "description": "Heartland Boys Home provides comprehensive residential treatment and education for at-risk youth. Empowering young men to build brighter futures through therapeutic care and academic excellence.",
+        "url": "https://heartlandboyshome.org",
+        "telephone": "(402) 759-4334",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "914 Rd P",
+            "addressLocality": "Geneva",
+            "addressRegion": "NE",
+            "postalCode": "68361",
+            "addressCountry": "US"
+        },
+        "openingHours": "Mo-Fr 08:00-17:00",
+        "sameAs": [
+            "https://www.facebook.com/profile.php?id=61578656154879"
+        ],
+        "image": "https://heartlandboyshome.org/images/logo.png",
+        "priceRange": "Contact for details"
+    }
+    </script>
 </head>
 <body>
+    <a href="#hero" class="skip-nav">Skip to main content</a>
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
         <div class="loading-content">
@@ -228,15 +265,15 @@
             
             <!-- Carousel Navigation -->
             <div class="carousel-nav">
-                <button class="carousel-btn prev" onclick="changeSlide(-1)">
+                <button class="carousel-btn prev" onclick="changeSlide(-1)" aria-label="Previous testimonial">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <div class="carousel-dots">
-                    <span class="dot active" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
-                    <span class="dot" onclick="currentSlide(3)"></span>
+                <div class="carousel-dots" role="tablist" aria-label="Testimonial navigation">
+                    <span class="dot active" onclick="currentSlide(1)" role="tab" tabindex="0" aria-label="Testimonial 1" aria-selected="true"></span>
+                    <span class="dot" onclick="currentSlide(2)" role="tab" tabindex="0" aria-label="Testimonial 2" aria-selected="false"></span>
+                    <span class="dot" onclick="currentSlide(3)" role="tab" tabindex="0" aria-label="Testimonial 3" aria-selected="false"></span>
                 </div>
-                <button class="carousel-btn next" onclick="changeSlide(1)">
+                <button class="carousel-btn next" onclick="changeSlide(1)" aria-label="Next testimonial">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
@@ -404,7 +441,7 @@
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="programs.html">Programs</a></li>
                         <li><a href="admissions.html">Admissions</a></li>
-                        <li><a href="staff.html">Our Staff</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -425,7 +462,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Heartland Boys Home. All rights reserved.</p>
+                <p>&copy; 2025 Heartland Boys Home. All rights reserved.</p>
             </div>
         </div>
     </footer>
