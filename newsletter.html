@@ -179,7 +179,7 @@
             var status = document.getElementById('newsletter-status');
             btn.disabled = true; btnText.style.display = 'none'; btnLoading.style.display = 'inline'; status.style.display = 'none';
             var data = { form_type: 'Newsletter Subscription', name: form.name.value, email: form.email.value };
-            fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+            fetch('/api/contact.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
             .then(function(res) { if (!res.ok) throw new Error(); return res.json(); })
             .then(function() { status.className = 'form-status form-success'; status.innerHTML = '<i class="fas fa-check-circle"></i> You\'re subscribed! Thank you for staying connected.'; status.style.display = 'block'; form.reset(); status.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); })
             .catch(function() { status.className = 'form-status form-error'; status.innerHTML = '<i class="fas fa-exclamation-circle"></i> Something went wrong. Please email rschroetlin78@gmail.com directly.'; status.style.display = 'block'; })

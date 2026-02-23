@@ -360,7 +360,7 @@
                 message: form.message.value
             };
 
-            fetch('/api/contact', {
+            fetch('/api/contact.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)

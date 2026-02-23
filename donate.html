@@ -218,7 +218,7 @@
             var status = document.getElementById('donate-status');
             btn.disabled = true; btnText.style.display = 'none'; btnLoading.style.display = 'inline'; status.style.display = 'none';
             var data = { form_type: 'Donation Inquiry', from_name: form.from_name.value, from_email: form.from_email.value, phone: form.phone.value, donation_type: form.donation_type.value, description: form.description.value, notes: form.notes.value };
-            fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+            fetch('/api/contact.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
             .then(function(res) { if (!res.ok) throw new Error(); return res.json(); })
             .then(function() { status.className = 'form-status form-success'; status.innerHTML = '<i class="fas fa-check-circle"></i> Thank you! We\'ll be in touch within 24 hours.'; status.style.display = 'block'; form.reset(); status.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); })
             .catch(function() { status.className = 'form-status form-error'; status.innerHTML = '<i class="fas fa-exclamation-circle"></i> Something went wrong. Please call (402) 759-4334 or email rschroetlin78@gmail.com.'; status.style.display = 'block'; })
