@@ -2613,6 +2613,21 @@ section ul li::before {
     overflow: hidden;
 }
 
+.testimonials .section-title,
+.testimonials-subtitle {
+    color: var(--white) !important;
+    opacity: 1 !important;
+}
+
+.testimonials-footer {
+    border-top-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.testimonials-note {
+    color: rgba(255, 255, 255, 0.85) !important;
+    opacity: 1 !important;
+}
+
 .testimonials::before {
     content: '';
     position: absolute;
