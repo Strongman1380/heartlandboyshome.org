@@ -1,0 +1,22 @@
+[
+  {
+    "fileName": "main-overview.mdc",
+    "description": "Complete system overview of the social skills development game platform, including core architecture, component relationships, and therapeutic frameworks"
+  },
+  {
+    "fileName": "game-engine-algorithms.mdc",
+    "description": "Detailed documentation of the game engine's core algorithms including difficulty scaling, token-based scoring system, and behavioral assessment workflows"
+  },
+  {
+    "fileName": "scenario-data-models.mdc",
+    "description": "Comprehensive documentation of scenario data structures, categories, difficulty levels, skill tags, and learning outcome models"
+  },
+  {
+    "fileName": "evaluation-framework.mdc",
+    "description": "Technical specification of the 6-step therapeutic assessment process, worksheet evaluation system, and staff feedback mechanisms"
+  },
+  {
+    "fileName": "game-modes-flow.mdc",
+    "description": "Data flow documentation for different game modes (Standard, Tournament, Skill Building, Quick Decision) including mode-specific logic and progression systems"
+  }
+]

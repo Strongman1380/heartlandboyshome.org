@@ -1,0 +1,57 @@
+---
+description: Documents scenario data structures and models used in social skills development training system
+---
+
+
+# scenario-data-models
+
+## Core Scenario Structure
+Location: real-world-decisions/js/data.js
+
+The scenario data models are organized into six primary categories aligned with therapeutic life skills development:
+
+- Everyday Choices
+- Social Situations  
+- School & Work
+- Family Relationships
+- Money Management
+- Health & Safety
+
+Each scenario contains:
+- Difficulty level indicators
+- Social skill classification tags
+- Targeted learning outcome definitions
+
+## Learning Outcome Model
+Scenarios are mapped to therapeutic assessment components:
+- Problem Identification
+- Options Analysis  
+- Consequence Evaluation
+- Impact Assessment
+- Decision Making
+- Action Planning
+
+## Difficulty Classification
+Implements progressive difficulty scaling with:
+- Performance-based level adjustments
+- Token-based scoring system:
+  - Green: 5 points
+  - Yellow: 3 points 
+  - Red: 1 point
+
+## Skill Categorization
+Scenarios are tagged with relevant social competency markers used for:
+- Therapeutic tracking
+- Skill development progression
+- Behavioral assessment alignment
+
+## Game Mode Templates
+Four specialized scenario delivery formats:
+- Standard Challenge
+- Tournament
+- Skill Building  
+- Quick Decision
+
+Each mode contains unique scenario presentation and evaluation parameters aligned with specific therapeutic objectives.
+
+$END$
