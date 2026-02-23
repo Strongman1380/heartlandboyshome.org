@@ -67,20 +67,63 @@
                 <p>This form is for professional referrals only. All referrals must come from authorized agencies or professionals. Please ensure you have permission to share the youth's information before submitting.</p>
             </div>
 
-            <div class="google-form-container">
-                <p style="text-align: center; margin-bottom: 20px; color: var(--primary-red); font-weight: 500;">
-                    <i class="fas fa-info-circle"></i> Please select "Referral/Admission" as your inquiry type in the form below.
-                </p>
-                <iframe 
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSe5zMM4Cl3oyWTcZXKIX-dzKg_komhGlIqw8ZNw8Q-r5HfmmQ/viewform?embedded=true" 
-                    width="100%" 
-                    height="1200" 
-                    frameborder="0" 
-                    marginheight="0" 
-                    marginwidth="0"
-                    title="Referral Form - Heartland Boys Home">
-                    Loading…
-                </iframe>
+            <div class="contact-form-container">
+                <form id="referral-form" class="contact-form">
+                    <input type="hidden" name="form_type" value="Referral">
+                    <h3 style="margin: 0 0 20px; color: var(--dark-gray);">Referring Professional</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact_name">Your Name <span class="required">*</span></label>
+                            <input type="text" id="contact_name" name="contact_name" required placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="agency">Agency / Organization <span class="required">*</span></label>
+                            <input type="text" id="agency" name="agency" required placeholder="Your agency or organization">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact_email">Your Email <span class="required">*</span></label>
+                            <input type="email" id="contact_email" name="contact_email" required placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact_phone">Your Phone <span class="required">*</span></label>
+                            <input type="tel" id="contact_phone" name="contact_phone" required placeholder="(xxx) xxx-xxxx">
+                        </div>
+                    </div>
+                    <h3 style="margin: 10px 0 20px; color: var(--dark-gray);">Youth Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="youth_age">Youth Age <span class="required">*</span></label>
+                            <input type="number" id="youth_age" name="youth_age" required min="10" max="21" placeholder="Age">
+                        </div>
+                        <div class="form-group">
+                            <label for="donation_type">Referral Source</label>
+                            <select id="donation_type" name="donation_type">
+                                <option value="" disabled selected>Select source</option>
+                                <option value="Juvenile Probation">Juvenile Probation</option>
+                                <option value="Child Welfare / DHHS">Child Welfare / DHHS</option>
+                                <option value="Court Order">Court Order</option>
+                                <option value="School District">School District</option>
+                                <option value="Mental Health Provider">Mental Health Provider</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Reason for Referral & Youth Background <span class="required">*</span></label>
+                        <textarea id="description" name="description" rows="5" required placeholder="Please describe the youth's needs, behaviors, history, and why you believe our program is appropriate..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Additional Information</label>
+                        <textarea id="notes" name="notes" rows="3" placeholder="Current placement, urgency, any other relevant details..."></textarea>
+                    </div>
+                    <div id="referral-status" class="form-status" style="display: none;"></div>
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <span class="btn-text">Submit Referral</span>
+                        <span class="btn-loading" style="display: none;"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
+                    </button>
+                </form>
             </div>
         </div>
     </section>
@@ -134,5 +177,22 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+        document.getElementById('referral-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var form = this;
+            var btn = form.querySelector('.btn-submit');
+            var btnText = btn.querySelector('.btn-text');
+            var btnLoading = btn.querySelector('.btn-loading');
+            var status = document.getElementById('referral-status');
+            btn.disabled = true; btnText.style.display = 'none'; btnLoading.style.display = 'inline'; status.style.display = 'none';
+            var data = { form_type: 'Referral', contact_name: form.contact_name.value, agency: form.agency.value, contact_email: form.contact_email.value, contact_phone: form.contact_phone.value, youth_age: form.youth_age.value, donation_type: form.donation_type.value, description: form.description.value, notes: form.notes.value };
+            fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+            .then(function(res) { if (!res.ok) throw new Error(); return res.json(); })
+            .then(function() { status.className = 'form-status form-success'; status.innerHTML = '<i class="fas fa-check-circle"></i> Referral submitted! We\'ll contact you within 24 hours.'; status.style.display = 'block'; form.reset(); status.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); })
+            .catch(function() { status.className = 'form-status form-error'; status.innerHTML = '<i class="fas fa-exclamation-circle"></i> Something went wrong. Please call (402) 759-4334 or email rschroetlin78@gmail.com.'; status.style.display = 'block'; })
+            .finally(function() { btn.disabled = false; btnText.style.display = 'inline'; btnLoading.style.display = 'none'; });
+        });
+    </script>
 </body>
 </html>
