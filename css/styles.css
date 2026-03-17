@@ -573,6 +573,7 @@ body {
 
 .hero-image {
     position: relative;
+    background: transparent;
 }
 
 .hero-image img {
@@ -2994,10 +2995,8 @@ body {
 .hero-image img {
     border-radius: 0;
     box-shadow: none;
-    mix-blend-mode: multiply;
     background: transparent;
-    max-width: 90%;
-    margin: 0 auto;
+    max-width: 100%;
     display: block;
 }
 
