@@ -68,7 +68,7 @@ module.exports = async function handler(req, res) {
     try {
         await resend.emails.send({
             from: 'Heartland Boys Home <onboarding@resend.dev>',
-            to: 'rschroetlin78@gmail.com',
+            to: 'rschroetling78@gmail.com',
             replyTo: emailField,
             subject: `New ${formType} from ${body.from_name || body.contact_name || body.name || emailField}`,
             html,

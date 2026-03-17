@@ -1,6 +1,6 @@
 <?php
 // Heartland Boys Home — Contact Form Handler (Resend API)
-// Receives JSON POST from any form on the site and emails to rschroetlin78@gmail.com
+// Receives JSON POST from any form on the site and emails to rschroetling78@gmail.com
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $RESEND_API_KEY = 're_F5HtSi58_D7MMgNq7YL3TEjvdZGJv8fqj';
-$TO_EMAIL       = 'rschroetlin78@gmail.com';
+$TO_EMAIL       = 'rschroetling78@gmail.com';
 
 $body = json_decode(file_get_contents('php://input'), true);
 if (!$body) {

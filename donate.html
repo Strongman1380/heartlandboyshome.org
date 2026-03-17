@@ -159,7 +159,7 @@
         <div class="container">
             <div class="highlight-box">
                 <h3><i class="fas fa-phone"></i> Questions About Donating?</h3>
-                <p>Contact us at <strong>(402) 759-4334</strong> or email <strong>rschroetlin78@gmail.com</strong> to discuss donation opportunities.</p>
+                <p>Contact us at <strong>(402) 759-4334</strong> or email <strong>rschroetling78@gmail.com</strong> to discuss donation opportunities.</p>
             </div>
         </div>
     </section>
@@ -193,7 +193,7 @@
                     <h3>Contact Info</h3>
                     <p><i class="fas fa-map-marker-alt"></i> 914 Rd P, Geneva, Ne, 68361</p>
                     <p><i class="fas fa-phone"></i> (402) 759-4334</p>
-                    <p><i class="fas fa-envelope"></i> rschroetlin78@gmail.com</p>
+                    <p><i class="fas fa-envelope"></i> rschroetling78@gmail.com</p>
                 </div>
                 <div class="footer-section">
                     <h3>Partner With Us</h3>
@@ -221,7 +221,7 @@
             fetch('/api/contact.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
             .then(function(res) { if (!res.ok) throw new Error(); return res.json(); })
             .then(function() { status.className = 'form-status form-success'; status.innerHTML = '<i class="fas fa-check-circle"></i> Thank you! We\'ll be in touch within 24 hours.'; status.style.display = 'block'; form.reset(); status.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); })
-            .catch(function() { status.className = 'form-status form-error'; status.innerHTML = '<i class="fas fa-exclamation-circle"></i> Something went wrong. Please call (402) 759-4334 or email rschroetlin78@gmail.com.'; status.style.display = 'block'; })
+            .catch(function() { status.className = 'form-status form-error'; status.innerHTML = '<i class="fas fa-exclamation-circle"></i> Something went wrong. Please call (402) 759-4334 or email rschroetling78@gmail.com.'; status.style.display = 'block'; })
             .finally(function() { btn.disabled = false; btnText.style.display = 'inline'; btnLoading.style.display = 'none'; });
         });
     </script>

@@ -3,6 +3,9 @@
 .env.*
 !.env.example
 
+# Deployment script (contains credentials)
+deploy.sh
+
 # Node modules
 node_modules/
 jspm_packages/

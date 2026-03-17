@@ -677,15 +677,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Email obfuscation - protect email addresses from spam bots
 document.addEventListener('DOMContentLoaded', function() {
-    const emailUser = 'rschroetlin78';
+    const emailUser = 'rschroetling78';
     const emailDomain = 'gmail.com';
     const email = emailUser + '@' + emailDomain;
 
     // Replace all visible email text nodes
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
     while (walker.nextNode()) {
-        if (walker.currentNode.nodeValue.includes('rschroetlin78@gmail.com')) {
-            walker.currentNode.nodeValue = walker.currentNode.nodeValue.replace('rschroetlin78@gmail.com', email);
+        if (walker.currentNode.nodeValue.includes('rschroetling78@gmail.com')) {
+            walker.currentNode.nodeValue = walker.currentNode.nodeValue.replace('rschroetling78@gmail.com', email);
         }
     }
 
